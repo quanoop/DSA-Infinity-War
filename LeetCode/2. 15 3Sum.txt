@@ -1,0 +1,43 @@
+//Q: 
+Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
+
+Notice that the solution set must not contain duplicate triplets.
+
+
+
+//Comments
+MAANG problem, Medium
+
+
+//Initial Instinct
+
+
+
+
+//Solution Code
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        vector<int> ans;
+        int n = nums.size();
+        unordered_map<int,int> map;
+        for(int i=0;i<n;++i){
+            int x = target - nums[i];
+            if(map.find(x)!=map.end()){
+                ans.push_back(map[x]);
+                ans.push_back(i);
+                break;
+            } else {
+                 map.insert({nums[i], i});
+            }
+           
+        }
+        return ans;
+    }
+};
+
+
+
+
+//FeedBack and more
+Still find ways to make it faster.
