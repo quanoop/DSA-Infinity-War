@@ -1,0 +1,47 @@
+//Q: 
+
+
+//Comments
+
+
+//Initial Instinct
+
+
+
+
+//Solution Code
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        unordered_map<char,char> map1;
+        unordered_map<char,char> map2;
+        int m = s.length();
+            for(int j = 0;j<m;j++){
+                char a = s[j];
+                char b = t[j];
+                
+                if(map1.find(a)==map1.end()){
+                    map1[a]=b;
+                }
+                if(map2.find(b)==map2.end()){
+                    map2[b]=a;
+                }
+                if(map1[a]!=b || map2[b]!=a){
+                   return false;
+                }
+                
+                
+            }
+        
+        return true;
+    }
+};
+
+
+
+
+//Optimised solution
+
+
+
+//FeedBack and more

@@ -1,0 +1,87 @@
+//Q: 
+Given an array of integers arr, return true if and only if it is a valid mountain array.
+
+Recall that arr is a mountain array if and only if:
+
+arr.length >= 3
+There exists some i with 0 < i < arr.length - 1 such that:
+arr[0] < arr[1] < ... < arr[i - 1] < arr[i]
+arr[i] > arr[i + 1] > ... > arr[arr.length - 1]
+
+
+//Comments
+
+
+//Initial Instinct
+
+
+
+
+//Solution Code
+class Solution {
+public:
+    bool validMountainArray(vector<int>& arr) {
+        bool inc = true;
+        int peak = 0;
+        
+        if(arr.size()<3) return false;
+        
+        int n = arr.size();
+        for(int i=0;i<n-1;i++){
+            if(arr[i]==arr[i+1])
+                    return false;
+        }
+        int left=-1, right=-1;
+        
+        for(int i=0;i<n-1;i++){
+            if(arr[i]>arr[i+1]){
+                left = arr[i];
+                if(i==0){
+                    return false;
+                }
+                break;
+            }
+        }
+        for(int i=n-1;i >0;i--){
+            if(arr[i]>arr[i-1]){
+                right = arr[i];
+                if(i==n-1){
+                    return false;
+                }
+                break;
+            }
+        }
+        if(right == left) return true;
+        return false;
+    }
+};
+
+
+
+
+//Optimised solution
+class Solution {
+    public boolean validMountainArray(int[] A) {
+        int N = A.length;
+        int i = 0;
+
+        // walk up
+        while (i+1 < N && A[i] < A[i+1])
+            i++;
+
+        // peak can't be first or last
+        if (i == 0 || i == N-1)
+            return false;
+
+        // walk down
+        while (i+1 < N && A[i] > A[i+1])
+            i++;
+
+        return i == N-1;
+    }
+}
+
+
+
+//FeedBack and more
+The optimised solution is not optimised actually. It is a clean code;

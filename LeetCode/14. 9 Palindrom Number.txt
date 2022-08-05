@@ -1,0 +1,42 @@
+//Q: 
+
+
+//Comments
+
+
+//Initial Instinct
+
+
+
+
+//Solution Code
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        if(x<0){
+            return false;
+        }
+        long int n=0;
+        int c = x;
+        while(c){
+            int t = c%10;
+            n = n*10 + t;
+            c=c/10;
+        }
+        if(n==x){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+};
+
+
+
+
+//Optimised solution
+
+
+
+//FeedBack and more

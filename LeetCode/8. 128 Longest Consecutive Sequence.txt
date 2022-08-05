@@ -1,0 +1,28 @@
+//Q: 
+Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence.
+
+You must write an algorithm that runs in O(n) time.
+
+
+
+
+//Comments
+
+
+//Initial Instinct
+This problem will be solved easily if we sort this. But sorting takes O(nlog(n)).
+So we have to think of something better.
+
+
+
+
+//Solution Code
+
+
+
+
+//Optimised solution
+
+
+
+//FeedBack and more

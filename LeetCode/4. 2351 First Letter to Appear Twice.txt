@@ -1,0 +1,44 @@
+//Q: tag Easy
+Given a string s consisting of lowercase English letters, return the first letter to appear twice.
+
+Note:
+
+A letter a appears twice before another letter b if the second occurrence of a is before the second occurrence of b.
+s will contain at least one letter that appears twice.
+
+
+
+//Comments
+
+
+//Initial Instinct
+
+
+
+
+//Solution Code 
+class Solution {
+public:
+    char repeatedCharacter(string s) {
+        unordered_map<char, int> map;
+        int n = s.length();
+        for(int i=0; i<n;i++){
+            if(map.find(s[i])!=map.end()){
+                return s[i];
+            }
+            else {
+                map[s[i]]=1;
+            }
+        }
+        return NULL;
+    }
+};
+
+
+
+
+//Optimised solution
+
+
+
+//FeedBack and more

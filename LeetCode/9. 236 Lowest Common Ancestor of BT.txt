@@ -1,0 +1,86 @@
+//Q: 
+Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree.
+
+According to the definition of LCA on Wikipedia: “The lowest common ancestor is defined between two nodes p and q as the lowest node in T that has both p and q as descendants (where we allow a node to be a descendant of itself).”
+
+
+//Comments
+Solution is also given in leetcode solution tab.
+
+
+//Initial Instinct
+
+
+
+
+//Solution Code
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* ans = NULL;
+    
+    bool helper(TreeNode* root, TreeNode* p, TreeNode* q){
+        if(root == NULL){
+            return false;
+        }
+        
+        int left = helper(root->left,p,q) ? 1 : 0;
+        int right = helper(root->right,p,q) ? 1 : 0;
+        
+        int mid = (root->val==p->val || root->val==q->val) ? 1 : 0;
+        
+        if(mid + left + right >= 2){
+            ans = root;
+        }
+        
+        return (mid + left + right > 0);
+        
+    }
+    
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        bool temp = helper(root, p, q);
+        
+        return ans;
+    }
+};
+
+
+
+
+//Optimised solution
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) 
+    {
+        if (!root)
+            return root;
+        
+		// If p or q if found, return the root.
+        if (root == p || root == q)
+            return root;
+        
+		// Save the root found at left and right recursively
+        TreeNode* left = lowestCommonAncestor(root->left, p, q);
+        TreeNode* right = lowestCommonAncestor(root->right, p, q);
+        
+		// If both the nodes are found, return parent of that node. That will be root.
+        if (left && right)
+            return root;
+        // If left is found, and right is not found.
+		// It is given that both the p and q will exist for sure.
+		// If left present then right will be a descendent of left, or vice versa.
+        return left? left: right;
+    }
+};
+
+
+
+//FeedBack and more
