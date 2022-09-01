@@ -1,0 +1,42 @@
+//Q: 
+
+
+//Comments
+
+
+//Initial Instinct
+
+
+
+
+//Solution Code
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+     int n = nums.size();
+    vector<bool> v(n+1, true);
+        v[0]=false;
+        for(int i = 0;i<n;i++){
+            v[nums[i]]=false;
+        }
+        
+        for(int i = 0;i<=n;i++){
+            if(v[i]==true){
+                return i;
+            }
+        }
+        return 0;
+    }
+};
+
+
+
+//Optimised solution
+It can be optimised using XOR bitmanupulation
+Take xor till n than take the xor of result with array elements.
+
+
+
+
+
+//FeedBack and more

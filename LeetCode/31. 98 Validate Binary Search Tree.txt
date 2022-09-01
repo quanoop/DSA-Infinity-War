@@ -1,0 +1,33 @@
+//Q: 
+
+
+//Comments
+
+
+//Initial Instinct
+
+
+
+
+//Solution Code
+class Solution {
+public:
+    bool isBST(TreeNode* root, long long l = -10000000000, long long r = 10000000000){
+        if(root == NULL) return true;
+        if(root->val<=l || root->val>=r) return false;
+        
+        return isBST(root->left, l, root->val) && isBST(root->right, root->val, r);
+    }
+    bool isValidBST(TreeNode* root) {
+        return isBST(root);
+    }
+};
+
+
+
+
+//Optimised solution
+
+
+
+//FeedBack and more

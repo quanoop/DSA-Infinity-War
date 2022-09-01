@@ -1,0 +1,42 @@
+//Q: 
+
+
+//Comments
+
+
+//Initial Instinct
+
+
+
+
+//Solution Code
+class Solution {
+public:
+    int firstUniqChar(string s) {
+        unordered_map<char, int> map;
+        int n = s.length();
+        if(n==1) return 0;
+        for(int i = 0;i<n;i++){
+            if(map.count(s[i])==0){
+                map[s[i]]=1;
+            }
+            else{
+                map[s[i]]+=1;
+            }
+        }
+        for(int i = 0;i<n;i++){
+            if(map[s[i]]==1) return i;
+        }
+        
+        return -1;
+    }
+};
+
+
+
+
+//Optimised solution
+
+
+
+//FeedBack and more

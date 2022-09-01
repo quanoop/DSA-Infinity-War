@@ -1,0 +1,53 @@
+//Q: 
+
+
+//Comments
+
+
+//Initial Instinct
+
+
+
+
+//Solution Code
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int k = 0, n=nums.size();
+        if(nums.size()==1) return 1;
+        int p = 0;
+        for(int i = 1;i<n;i++,k++){
+            if(nums[i]!=nums[k]){
+                if(p!=k){
+                    nums[++p] = nums[i];
+                }
+                else {
+                    p++;
+                }
+                
+            }
+        }
+        return p+1;
+    }
+};
+
+
+
+
+//Optimised solution
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int idx = 0;
+        for (int i = 1; i < nums.size(); i++){
+            if (nums[i] != nums[i - 1]) {
+                nums[++idx] = nums[i];
+            }
+        }
+        return idx + 1;
+    }
+};
+
+
+
+//FeedBack and more

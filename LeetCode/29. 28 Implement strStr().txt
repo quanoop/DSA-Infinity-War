@@ -1,0 +1,61 @@
+//Q: 
+
+
+//Comments
+
+
+//Initial Instinct
+
+
+
+
+//Solution Code
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+        int m = haystack.size();
+        int n = needle.size();
+        if(n==0) return 0;
+        
+        for(int i = 0 ; i < m ; i++){
+            int flag = 1;
+            for(int j = 0 ; j < n; j++){
+                if(haystack[i+j]!=needle[j]){
+                    flag=0;
+                    break;
+                }
+            }
+            if(flag) return i;
+        }
+        
+        return -1;
+    }
+};
+
+
+
+
+//Optimised solution
+    public int strStr(String haystack, String needle) {
+		if(haystack.length() < needle.length()) return -1;
+		if(needle.trim().length() == 0) return 0;
+        int slength = needle.length();
+        char first = needle.charAt(0);
+		int result =-1;
+        for(int i=0; i<haystack.length(); i++){
+			  if(haystack.charAt(i)==first){
+				  if(i+slength > haystack.length()) break;
+				  String tmp= haystack.substring(i,i+slength);
+				  if(tmp.equals(needle)){
+					  result = i;
+					  break;
+				  }
+              }
+		} 
+		return result;
+    }
+}
+
+
+
+//FeedBack and more

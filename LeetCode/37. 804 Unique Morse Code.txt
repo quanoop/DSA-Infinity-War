@@ -1,0 +1,38 @@
+//Q: 
+
+
+//Comments
+
+
+//Initial Instinct
+
+
+
+
+//Solution Code
+class Solution {
+public:
+    int uniqueMorseRepresentations(vector<string>& words) {
+        set<string> ans;
+        int n = words.size();
+        string code[] = { ".-", "-...", "-.-.", "-..", ".", "..-." ,"--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."};
+        for(int i = 0; i<n; i++){
+            string s = "";
+            for(int j = 0; j<words[i].length();j++){
+                s=s+code[words[i][j] - 'a'];
+            }
+            ans.insert(s);
+        }
+        
+        return ans.size();
+    }
+};
+
+
+
+
+//Optimised solution
+
+
+
+//FeedBack and more

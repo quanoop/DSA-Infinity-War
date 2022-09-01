@@ -1,0 +1,78 @@
+//Q: Given a binary search tree (BST), find the lowest common ancestor (LCA) node of two given nodes in the BST.
+
+According to the definition of LCA on Wikipedia: “The lowest common ancestor is defined between two nodes p and q as the lowest node in T that has both p and q as descendants (where we allow a node to be a descendant of itself).”
+
+
+//Comments
+
+
+//Initial Instinct
+
+
+
+
+//Solution Code
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+
+class Solution {
+public:
+    TreeNode* ans = NULL;
+    bool helper(TreeNode* root, TreeNode* p, TreeNode* q){
+        if(root == NULL){
+            return false;
+        }
+        
+        int left = helper(root->left,p,q) ? 1 : 0;
+        int right = helper(root->right,p,q) ? 1 : 0;
+        
+        int mid = (root->val==p->val || root->val==q->val) ? 1 : 0;
+        
+        if(mid + left + right >= 2){
+            ans = root;
+        }
+        
+        return (mid + left + right > 0);
+        
+    }
+    
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        bool temp = helper(root, p, q);
+        return ans;
+    }
+};
+
+
+
+
+//Optimised solution
+
+1. If both P and Q are less than the root, go left
+2. If both P and Q are greater than the root, go right
+3. if P and Q are split between left and right, then we have found the LCA.
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        int current = root->val;
+        if(p->val < current && q->val < current) {
+            return lowestCommonAncestor(root->left, p, q);
+        }
+        else if(p->val > current && q->val > current) {
+            return lowestCommonAncestor(root->right, p, q);
+        }
+        else{
+            return root;
+        }
+    }
+};
+
+
+
+//FeedBack and more

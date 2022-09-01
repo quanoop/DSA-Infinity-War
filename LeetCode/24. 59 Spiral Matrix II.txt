@@ -1,0 +1,61 @@
+//Q: 
+
+
+//Comments
+
+
+//Initial Instinct
+
+
+
+
+//Solution Code
+class Solution {
+public:
+    vector<vector<int>> generateMatrix(int n) {
+        vector<vector<int>> ans( n , vector<int> (n, 0)); 
+        int sr = 0, er = n-1;
+        int sc = 0, ec = n-1;
+        int count = 1;
+        while(sr<=er&&sc<=ec){
+            for(int i=sc;i<=ec;i++){
+                ans[sr][i]=count;
+               count++;
+            }
+            sr++;
+            if(n*n==count-1) return ans;
+            
+            for(int i = sr;i<=er;i++){
+                ans[i][ec]=count;
+                count++;
+            }
+            ec--;
+            if(n*n==count-1) return ans;
+            
+            for(int i = ec;i>=sc;i--){
+                ans[er][i]=count;
+                count++;
+            }
+            er--;
+             if(n*n==count-1) return ans;
+            
+            for(int i = er;i>=sr;i--){
+                ans[i][sc]=count;
+                count ++;
+            }
+            sc++;
+             if(n*n==count-1) return ans;
+            
+        }
+        return ans;
+    }
+};
+
+
+
+
+//Optimised solution
+
+
+
+//FeedBack and more

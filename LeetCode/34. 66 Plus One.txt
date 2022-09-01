@@ -1,0 +1,50 @@
+//Q: 
+
+
+//Comments
+
+
+//Initial Instinct
+
+
+
+
+//Solution Code
+class Solution {
+public:
+    vector<int> plusOne(vector<int>& digits) {
+        int n = digits.size();
+        if(digits[n-1]!=9){
+            digits[n-1]+=1;
+            return digits;
+        }
+        else{
+            digits[n-1] = 0;
+            while(n--){
+                if(n==0){
+                    digits.insert(digits.begin(),1);
+                } else {
+                    int t = digits[n-1];
+                    t++;
+                    if(t<=9){
+                        digits[n-1] = t;
+                        break;
+                    }else {
+                        digits[n-1] = 0;
+                    }
+                }
+                
+            }
+        }
+        return digits;
+    }
+};
+
+
+
+
+//Optimised solution
+
+
+
+//FeedBack and more
