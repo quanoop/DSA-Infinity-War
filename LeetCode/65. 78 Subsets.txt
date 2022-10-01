@@ -1,0 +1,41 @@
+//Q: 
+
+
+//Comments
+
+
+//Initial Instinct
+
+
+
+
+//Solution Code
+class Solution {
+public:
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>> ans;
+        int n = nums.size();
+        vector<int> iter;
+        ans.push_back(iter);
+        for(int i=0;i<n;i++){
+            int m = ans.size();
+            for(int j=0;j<m;j++){
+                iter = ans[j];
+                iter.push_back(nums[i]);
+                ans.push_back(iter);
+                iter.clear();
+            }
+        }
+        return ans;
+    }
+};
+
+
+
+
+//Optimised solution
+Leetcode solution section.
+
+
+
+//FeedBack and more

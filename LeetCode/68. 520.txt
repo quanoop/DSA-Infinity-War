@@ -1,0 +1,35 @@
+//Q: 
+
+
+//Comments
+
+
+//Initial Instinct
+
+
+
+
+//Solution Code
+class Solution {
+public:
+    bool detectCapitalUse(string word) {
+        string s1=word, s2=word;
+        transform(s1.begin(), s1.end(), s1.begin(), ::toupper);
+        transform(s2.begin(), s2.end(), s2.begin(), ::tolower);
+        if(word == s1 || word == s2) return true;
+        s2[0] = s2[0] - 32;
+        if(s2==word) return true;
+        return false;
+    }
+};
+
+
+
+
+//Optimised solution
+
+Leetcode solution section
+
+
+
+//FeedBack and more

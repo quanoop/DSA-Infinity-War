@@ -1,0 +1,80 @@
+//Q: 
+Given an array of n distinct elements. Find the minimum number of swaps required to sort the array in strictly increasing order.
+
+//Comments
+
+
+//Initial Instinct
+
+
+
+
+//Solution Code
+//{ Driver Code Starts
+#include<bits/stdc++.h>
+using namespace std;
+
+// } Driver Code Ends
+
+
+class Solution 
+{
+    public:
+    //Function to find the minimum number of swaps required to sort the array. 
+	int minSwaps(vector<int>&nums)
+	{   int ans = 0,n=nums.size();
+	    pair<int, int> ap[n];
+	    for(int i =0;i<n;i++){
+	        ap[i].first = nums[i];
+	        ap[i].second = i;
+	    }
+	    
+	    sort(ap, ap + n);
+	    
+	    vector<bool> visited(n, false);
+	    
+	    for(int i = 0 ;i<n;i++){
+	        int old = ap[i].second;
+	        if(visited[i] || old==i ){
+	            continue;
+	        }
+	        int node = i;
+	        int cycle = 0;
+	        while(!visited[node]){
+	            visited[node]=true;
+	            cycle++;
+	            node = ap[node].second;
+	        }
+	        ans+=cycle-1;
+	        
+	    }
+	    
+	    return ans;
+	}
+};
+
+//{ Driver Code Starts.
+int main(){
+	int tc;
+	cin >> tc;
+	while(tc--){
+		int n;
+		cin >> n;
+		vector<int>nums(n);
+		for(int i = 0; i < n; i++)
+			cin >> nums[i];
+		Solution obj;
+		int ans = obj.minSwaps(nums);
+		cout << ans <<"\n";
+	}
+	return 0;
+}
+// } Driver Code Ends
+
+
+
+//Optimised solution
+
+
+
+//FeedBack and more

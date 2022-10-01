@@ -1,0 +1,31 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    void helper(vector<int> &nums, int i, int s, vector<vector<int>> &ans){
+        if(i==s-1){
+            ans.push_back(nums);
+        } else {
+            for(int j = i;j<s;j++){
+                swap(nums[i], nums[j]);
+                helper(nums, i+1,s, ans);
+                swap(nums[i], nums[j]);
+            }
+        }
+    }
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> ans;
+        helper(nums, 0, nums.size(), ans);
+        return ans;
+        
+    }
+};
+
+// Optimised solution
+
+// FeedBack and more

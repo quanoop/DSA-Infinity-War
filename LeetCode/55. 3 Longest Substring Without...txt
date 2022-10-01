@@ -1,0 +1,44 @@
+//Q: 
+
+
+//Comments
+
+
+//Initial Instinct
+
+
+
+
+//Solution Code
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int n = s.length();
+        unordered_map<char, int> temp;
+        int ans = INT_MIN;
+        int count = 0;
+        for(int i=0;i<n;i++){
+            if(temp.find(s[i])==temp.end()){
+                temp[s[i]]=i;
+                count++;
+            } else {
+                if(count>ans){
+                    ans=count;
+                }
+                count=0;
+                i=temp[s[i]];
+                temp.clear();
+            }
+        }
+        return max(ans, count);
+    }
+};
+
+
+
+
+//Optimised solution
+
+
+
+//FeedBack and more

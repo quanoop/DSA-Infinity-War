@@ -1,0 +1,99 @@
+// Q:
+Game of Greed
+You are playing a game with your 'k' friends. You have an array of N coins, at each index i you have a coin of value a[i].
+Your task is to divide the coins, among a group of K friends by doing consecutive segments (k-subarrays) of the array.
+Each friend will get a total sum of the coins in that subarray. Since all your friends are greedy, and they will pick the largest k-1 segments and you will get the smallest segment. Find out the maximum value you can make by making an optimal partition.
+
+Note : The coins array may or may not be sorted!
+
+(Refer Hints at the end if needed)
+
+
+Input
+
+K = 3
+coins = {1,2,3,4};
+Output
+
+3
+
+Explanation 
+The ideal partition looks like this -
+
+{1 + 2} = 3
+
+{3} = 3
+
+{4} = 4
+
+You will get a maximum of 3 coins in the best case.
+
+HINTS
+======
+
+Hint  1 : Can you apply recursion, Brute force?
+
+Hint 2 : Can you apply Binary Search, is the search space monotonic?
+
+Hint 3:  You can do binary search on search space (MIN, MAX) where Min is the smallest coin denomination in the array and MAX is the sum of all coins in the array.
+
+  
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+#include<bits/stdc++.h>
+using namespace std;
+
+bool divideAmongK(vector<int> arr,int n,int k,int limit){
+    //return true if every partition gets atleast limit no of coins
+
+        int cnt = 0;
+        int current_sum = 0;
+        
+        for(int i=0;i<n;i++){
+            if(current_sum + arr[i] >=limit){
+                cnt +=1;
+                current_sum = 0;
+            }
+            else{
+                current_sum += arr[i];
+            }
+        } 
+       
+    return cnt>=k;
+}
+
+int getCoins(vector<int> arr,int k){
+    //return the minimum number
+    int n = arr.size();
+    int e = 0;
+    int s = 0;
+    for(int i=0;i<n;i++){
+        e += arr[i];
+    }
+    //mid
+    int mid;
+    int ans;
+    //search range (s,e)
+    while(s<=e){
+         mid = (s+e)/2;
+         
+        bool isPossible = divideAmongK(arr,n,k,mid);
+
+        if(isPossible){
+            s = mid + 1;
+            ans = mid;
+        }
+        else{
+            e = mid - 1;
+        }
+    }
+    return ans;
+}
+
+// Optimised solution
+
+// FeedBack and more

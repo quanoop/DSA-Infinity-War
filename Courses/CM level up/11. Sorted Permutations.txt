@@ -1,0 +1,77 @@
+// Q:
+Sorted Permutations
+Given a string S of lowercase alphabets, you need to find all 'unique' permutations of the string in a 'sorted' order.
+
+(Hint: You can use find all permutations using brute force, and put them in a set for the sorting.
+
+
+
+Input Format:
+
+Functions contains string S as a parameter.(There are more than 1 testcases).
+
+Output Format:
+
+Return a sorted vector containing all the permutations of string.
+
+Constraints:
+
+1<=S.length()<=10
+
+Sample Testcase:
+
+
+
+Input:
+
+acb
+
+Output:
+
+abc
+
+acb
+
+bac
+
+bca
+
+cab
+
+cba
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+#include<bits/stdc++.h>
+using namespace std;
+
+void helper(string s,set<string> &ans, int i){
+    if(i==s.length()){
+        ans.insert(s);
+    } else{
+        for(int j=i;j<s.length();j++){
+            swap(s[i], s[j]);
+            helper(s, ans, i+1);
+            swap(s[i],s[j]);
+        }
+    }
+}
+
+vector<string> findSortedPermutations(string s){
+    //Your code goes here. Do not change the function or parameters. You can use helper functions if needed.
+    set<string> ans;
+    helper(s, ans, 0);
+    vector<string> a;
+    for(auto x:ans){
+        a.push_back(x);
+    }
+    sort(a.begin(), a.end());
+    return a;
+}
+
+// Optimised solution
+
+// FeedBack and more

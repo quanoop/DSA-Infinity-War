@@ -1,0 +1,45 @@
+//Q: 
+
+
+//Comments
+
+
+//Initial Instinct
+
+
+
+
+//Solution Code
+#include<string>
+using namespace std;
+
+string smallestWindow(string str){
+    //Complete this method
+    int n = str.length();
+    int fc[256] = {0};
+    for(int i = 0 ;i<n;i++){
+        fc[str[i]]++;
+    }
+    int i = 0, j=n-1;
+    while(fc[str[i]]>1){
+        fc[str[i]]--;
+        i++;
+    }
+     while(fc[str[j]]>1){
+        fc[str[j]]--;
+        j--;
+    }
+    
+    return str.substr(i, j-i+1);
+    
+    
+}
+
+
+
+
+//Optimised solution
+
+
+
+//FeedBack and more

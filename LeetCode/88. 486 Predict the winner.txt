@@ -1,0 +1,27 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    bool solve(vector<int>& nums, int s, int e, int p1, int p2, bool p1turn){
+        if(s>e){
+            return p1 >= p2;
+        }
+        if(p1turn) 
+            return solve(nums, s+1, e, p1 + nums[s], p2, false) || solve(nums, s, e-1, p1 + nums[e], p2, false);
+        
+        return solve(nums, s+1, e, p1, p2+ nums[s], true) &&solve(nums, s, e-1, p1, p2+ nums[e], true);
+        
+        }
+    bool PredictTheWinner(vector<int>& nums) {
+        return solve(nums, 0, nums.size()-1, 0, 0, true);
+    }
+};
+
+// Optimised solution
+
+// FeedBack and more

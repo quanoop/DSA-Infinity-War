@@ -1,0 +1,63 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    bool canPlace(vector<vector<char>> &board, int i, int j, char e){
+        for(int n = 0;n<9;n++){
+            if(board[i][n]==e) return false;
+            if(board[n][j]==e) return false;
+        }
+        
+        int sx = (i/3)*3;
+        int sy = (j/3)*3;
+        
+        for(int x =sx;x<sx+3;x++){
+            for(int y =sy;y<sy+3;y++){
+                if(board[x][y]==e)
+                    return false;
+            }
+        }
+        return true;
+    }
+    bool solve(vector<vector<char>> &board, int i, int j){
+        if(i==9) return true;
+        
+        //if col has reached to the end
+        if(j==9){
+            return solve(board, i+1, 0);
+        }
+        
+        //if it is filled
+        if(board[i][j]!='.'){
+            return solve(board, i, j+1);
+        }
+        
+        for(char k = '1';k<='9';k++){
+            if(canPlace(board, i, j, k)){
+                board[i][j] =  k;
+                bool solved = solve(board, i, j+1);
+                if(solved){
+                    return true;
+                }
+            }
+        }
+        
+        board[i][j] = '.';
+        
+        return false;
+        
+        
+    }
+    void solveSudoku(vector<vector<char>>& board) {
+        solve(board, 0, 0);
+    }
+};
+
+// Optimised solution
+
+// FeedBack and more

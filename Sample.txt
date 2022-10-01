@@ -1,21 +1,11 @@
-//Q: 
+// Q:
 
+// Comments
 
-//Comments
+// Initial Instinct
 
+// Solution Code
 
-//Initial Instinct
+// Optimised solution
 
-
-
-
-//Solution Code
-
-
-
-
-//Optimised solution
-
-
-
-//FeedBack and more
+// FeedBack and more

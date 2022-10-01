@@ -1,0 +1,43 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    int maxDistance(vector<int>& position, int m) {
+        int n = position.size();
+        sort(position.begin(), position.end());
+        int s = 0;
+        int e = position[n-1] - position[0];
+        int ans = INT_MIN;
+        while(s<=e){
+            int mid = s + (e-s)/2;
+            int t = m;
+            int j = 0;
+            for(int i = 1;i<n;i++){
+                
+                if(position[i]-position[j]>=mid){
+                    j=i;
+                    if(t==m) t = t-2;
+                    else t--;
+                }
+                if(t==0) break;
+            }
+            if(t==0){
+                s = mid+1;
+                ans = mid;
+            } else {
+                e = mid-1;
+            }
+            
+        }
+        return ans;
+    }
+};
+
+// Optimised solution
+
+// FeedBack and more

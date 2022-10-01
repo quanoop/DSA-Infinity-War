@@ -1,0 +1,51 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+	double myPow(double x, int n) {
+		if(n == 0)return 1;
+		if(n < 0){
+			x = 1/x;
+			n = abs(n);
+		}
+		if(n%2 == 0)return myPow(x*x,n/2);
+		else return x*myPow(x*x,n/2);
+	}
+};
+
+// Iterative solution
+class Solution {
+public:
+        
+        // iterative approach
+        double myPow(double x, int n) {
+        double res = 1;
+        while (n) {
+            if (n % 2) 
+            {
+              if(n) res *= x; // if n is positive than multiply it by x
+              else res /= x; 
+			  // if the power is negative, then we have to divide it  because we know a^-1 = 1/a
+            }
+            x = x * x;
+            n /= 2;
+        }
+        return res;
+    }
+};
+
+class Solution {
+public:        
+         // one liner recursive and smarter code
+        
+         double myPow(double x, int n,double res=1) {
+         return n ? myPow(x * x, n / 2, n % 2 ? (n > 0 ? res * x : res / x) : res) : res;
+}
+};
+
+// FeedBack and more

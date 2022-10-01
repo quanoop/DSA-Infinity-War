@@ -1,0 +1,52 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode * curr = NULL;
+        while(head){
+            ListNode *temp = head;
+            head=head->next;
+            temp->next = curr;
+            curr = temp;
+        }
+        return curr;
+    }
+};
+
+// Alternate solution
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        
+         ListNode *previous = NULL;
+    while (head != NULL)
+    {
+        ListNode *n = head->next;
+        head->next = previous;
+        previous = head;
+        head = n;
+    }
+    return previous;
+        
+    }
+};
+
+// Recursive approach
+It is written in notes of coding minutes Level up dsa course
+// FeedBack and more

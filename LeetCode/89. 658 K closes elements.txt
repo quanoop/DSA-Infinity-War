@@ -1,0 +1,29 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+
+// Optimised solution
+class Solution {
+public:
+    vector<int> findClosestElements(vector<int>& arr, int k, int x) {
+        priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> heap;
+        for(int i =0;i<arr.size();i++){
+            int diff = abs(arr[i]-x);
+            heap.push({diff, arr[i]});
+        }
+        vector<int> v;
+        while(k--){
+            v.push_back(heap.top().second);
+            heap.pop();
+        }
+        
+        sort(v.begin(),v.end());
+        return v;
+    }
+};
+
+// FeedBack and more

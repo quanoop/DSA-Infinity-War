@@ -1,0 +1,49 @@
+//Q: 
+
+
+//Comments
+
+
+//Initial Instinct
+
+
+
+
+//Solution Code
+class Solution {
+public:
+    int compress(vector<char>& chars) {
+        int n = chars.size();
+        vector<char> ans;
+        for(int i=0;i<n;i++){
+            int count = 1;
+            while(i< n-1 and chars[i]==chars[i+1]){
+                count++;
+                i++;
+            }
+            ans.push_back(chars[i]);
+            if(count>1){
+                string o=to_string(count);
+            for(int j=0;j<o.length();j++){
+                ans.push_back(o[j]);
+            }
+            }
+            
+        }
+        n=ans.size();
+        chars.clear();
+        for(int i=0;i<n;i++){
+            chars.push_back(ans[i]);
+        }
+    return n;
+    }
+};
+
+
+
+
+//Optimised solution
+
+
+
+//FeedBack and more

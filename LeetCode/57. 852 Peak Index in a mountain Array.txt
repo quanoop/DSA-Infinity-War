@@ -1,0 +1,73 @@
+//Q: 
+
+
+//Comments
+
+
+//Initial Instinct
+
+
+
+
+//Solution Code
+class Solution {
+public:
+    int peakIndexInMountainArray(vector<int>& arr) {
+        int n = arr.size();
+        int count = 0;
+        for(int i=1;i<n-1;){
+            if(arr[i]>arr[i-1] && arr[i]>arr[i+1]){
+                int j=i,ans=i;
+                while(j>=1&&arr[j] > arr[j-1]){
+                    j--;
+                }
+                while(i<=n-2 and arr[i] > arr[i+1]){
+                    i++;
+                }
+                if(j==0 and i==n-1) return ans;
+            }
+            else{
+                i++;
+            }
+        }
+        
+        return 1;
+    }
+    
+};
+
+
+
+
+//Optimised solution
+class Solution {
+    public int peakIndexInMountainArray(int[] A) {
+        int i = 0;
+        while (A[i] < A[i+1]) i++;
+        return i;
+    }
+}
+
+Binary Search
+
+class Solution {
+public:
+    int peakIndexInMountainArray(vector<int>& arr) {
+        int n = arr.size();
+        int s = 0;
+        int e= n-1;
+        int mid;
+        while(s<e){
+            mid = s + (e-s)/2;
+            if(arr[mid]<arr[mid+1])
+                s=mid+1;
+            else e=mid;
+        }
+        return s;
+    }
+    
+};
+
+
+
+//FeedBack and more

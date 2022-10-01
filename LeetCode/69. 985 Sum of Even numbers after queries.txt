@@ -1,0 +1,48 @@
+//Q: 
+
+
+//Comments
+
+
+//Initial Instinct
+
+
+
+
+//Solution Code
+class Solution {
+public:
+    vector<int> sumEvenAfterQueries(vector<int>& nums, vector<vector<int>>& queries) {
+        vector<int> ans;
+        int n = nums.size(), m=queries.size();
+        int esum=0;
+        for(int i = 0;i<n;i++){
+            if(nums[i]%2==0){
+                esum+=nums[i];
+            }
+        }
+        for(int i=0;i<m;i++){
+            int idx = queries[i][1];
+            int t = nums[idx];
+            if(t%2==0){
+                esum = esum - t;
+            }
+            nums[idx] = nums[idx] + queries[i][0];
+            if(nums[idx]%2==0){
+                esum = esum + nums[idx];
+            }
+            ans.push_back(esum);
+        }
+        return ans;
+    }
+};
+
+
+
+
+//Optimised solution
+
+
+
+
+//FeedBack and more

@@ -1,0 +1,33 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    void helper(string digits, int i, vector<string> &ans, string output, string keypad[]){
+        if(digits[i]=='\0'){
+            ans.push_back(output);
+        } else {
+            int c = digits[i] - '0';
+            for(int j=0;j<keypad[c].length();j++){
+                helper(digits,i+1, ans, output+keypad[c][j], keypad);
+            }
+        }
+        
+    }
+    vector<string> letterCombinations(string digits) {
+        string keypad[] = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        vector<string> ans;
+        if(digits.length()==0) return ans;
+        helper(digits, 0, ans, "", keypad);
+        return ans;
+        
+    }
+};
+
+// Optimised solution
+
+// FeedBack and more

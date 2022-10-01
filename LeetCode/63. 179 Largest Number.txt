@@ -1,0 +1,53 @@
+//Q: 
+
+
+//Comments
+
+
+//Initial Instinct
+
+
+
+
+//Solution Code
+class Solution {
+public:
+    bool allZeros(vector<int> &nums){
+        int pos = 0;
+        
+        for(int &num : nums)
+            pos = num == 0 ? pos + 1 : pos;
+        
+        return pos == nums.size();
+    }
+    static bool compare(string s1, string s2){
+        string first= s1 + s2;
+        string second = s2 + s1;
+        return first >= second;
+    }
+    string largestNumber(vector<int>& nums) {
+        int n = nums.size();
+        vector<string> helper;
+        if(allZeros(nums)) return "0";
+        for(int i=0;i<n;i++){
+            helper.push_back(to_string(nums[i]));
+        }
+    
+        sort(helper.begin(), helper.end(), compare);
+        
+        string ans="";
+        
+        for(int i = 0;i<n;i++){
+            ans+=helper[i];
+        }
+        return ans;
+    }
+};
+
+
+
+
+//Optimised solution
+Look at the leetcode solution section.
+
+//FeedBack and more

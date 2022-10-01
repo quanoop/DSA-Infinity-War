@@ -1,0 +1,36 @@
+//Q: 
+
+
+//Comments
+Kadanes algorithm is used in this.
+
+//Initial Instinct
+
+
+
+
+//Solution Code
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int maxo = INT_MIN;
+        int sum = 0,n=nums.size();
+        for(int i = 0 ;i < n;i++){
+            if(sum<0){
+                sum=0;
+            }
+            sum+=nums[i];
+            maxo = max(sum, maxo);
+        }
+        return maxo;
+    }
+};
+
+
+
+
+//Optimised solution
+
+
+
+//FeedBack and more

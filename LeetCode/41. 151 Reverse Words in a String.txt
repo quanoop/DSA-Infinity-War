@@ -1,0 +1,63 @@
+//Q: 
+
+
+//Comments
+
+
+//Initial Instinct
+
+
+
+
+//Solution Code
+class Solution {
+public:
+    string reverseWords(string s) {
+        stack<string> helper;
+        string word="";
+        int n = s.length();
+        for(int i = 0;i<n;i++){
+            if(s[i]!=' '){
+                word = word + s[i];
+            } else {
+                if(word!=""){
+                    helper.push(word);
+                    word = "";
+                }
+                
+                while(s[i]==' '){
+                i++;
+                }
+                i--;
+                
+            }
+        }
+        if(word!=""){
+            helper.push(word);
+        }
+        
+        
+        string ans="";
+        while(!helper.empty()){
+            ans = ans + helper.top() + ' ';
+            helper.pop();
+        }
+        
+        int m = ans.length();
+        
+        ans = ans.substr(0, m-1);
+        
+        return ans;
+        
+    }
+};
+
+
+
+
+//Optimised solution
+We can reverse the whole string than reverse each word. And remove extra space between the words. To do it in O(n) time complexity and O(1) space complexity.
+
+
+
+//FeedBack and more

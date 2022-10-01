@@ -1,0 +1,60 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    void helper(int n, vector<string> &ans, string str, int o){
+        if(n==0){
+            if(o==str.size()/2){
+                ans.push_back(str);
+            }
+            
+        } else {
+            if(o>str.size()/2){
+                helper(n-1, ans, str+')',o);
+            }
+             helper(n-1, ans, str+'(', o+1);
+        
+        }
+       
+        
+    }
+    
+    vector<string> generateParenthesis(int n) {
+        vector<string> ans;
+        string s = "(";
+        helper(2*n-1, ans, s, 1);
+        return ans;
+    }
+};
+
+// Optimised solution
+Solution section of leetcode
+
+class Solution {
+public:
+    void helper(int n, vector<string> &ans, string str, int o, int c, int i){
+        if(2*n==i){
+            ans.push_back(str);
+        } else {
+            if(o<n){
+                helper(n, ans, str+'(', o+1, c, i+1);
+            }
+            if(c<o){
+                helper(n, ans, str+')', o, c+1, i+1);
+            }
+    }
+    }
+    
+    vector<string> generateParenthesis(int n) {
+        vector<string> ans;
+        helper(n, ans, "", 0, 0, 0);
+        return ans;
+    }
+};
+
+// FeedBack and more

@@ -1,0 +1,98 @@
+//Q: 
+Implement a function that takes in two non-empty arrays of integers, finds the pair of numbers (one from each array) who absolute difference is closest to zero, and returns a pair containing these two numbers, with the first number from array. Only one such pair will exist for the test.
+
+Input
+
+Array1 = [23, 5, 10, 17, 30]
+Array2 = [26, 134, 135, 14, 19]
+Output
+
+17,19
+
+//Comments
+
+
+//Initial Instinct
+
+
+
+
+//Solution Code
+#include<vector>
+#include<algorithm>
+#include<climits>
+using namespace std;
+
+
+pair<int,int> minDifference(vector<int> a,vector<int> b){
+    //Complete this method
+    int m = a.size(), n=b.size();
+    pair<int, int> p;
+    int mindiff = INT_MAX;
+    for(int i = 0;i<m;i++){
+        for(int j =0;j<n;j++){
+            if(abs(a[i]-b[j])<mindiff){
+                mindiff = abs(a[i]-b[j]);
+                p.first = a[i];
+                p.second = b[j];
+            }
+        }
+    }
+    return p;
+}
+
+
+
+
+//Optimised solution
+#include<vector>
+#include<algorithm>
+#include<climits>
+using namespace std;
+ 
+pair<int,int> minDifference(vector<int> a,vector<int> b){
+    //Complete this method
+    int n1 = a.size();
+    int n2 = b.size();
+    
+    sort(a.begin(),a.end());
+    sort(b.begin(),b.end());
+    
+    pair<int,int> result;
+    int ans = INT_MAX;
+    
+    int i = 0;
+    int j = 0;
+    
+    while(i < n1 && j < n2)
+    {
+        int minDiff = abs(a[i] - b[j]);
+        
+        if(minDiff < ans)
+        {
+            ans = minDiff;
+            result = make_pair(a[i],b[j]);
+        }
+        if(a[i] <= b[j])
+        {
+            i++;
+        }
+        else
+        {
+            j++;
+        }
+    }
+    
+    return result;
+}
+Here is my solution to this problem. Solved using
+
+Time Complexity = O(nlogn)
+
+Space Complexity - O(1)
+
+Maybe we can also look for more optimised solution.
+
+
+
+//FeedBack and more

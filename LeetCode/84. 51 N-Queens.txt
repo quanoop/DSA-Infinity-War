@@ -1,0 +1,71 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    bool isSafe(int n, int mat[][10], int r, int c){
+        for(int i=0;i<r;i++){
+            if(mat[i][c]==1) return false;
+        }
+        
+        for (int i = r, j = c; i >= 0 && j >= 0; i--, j--){
+            if (mat[i][j] == 1) {
+            return 0;
+            }
+        }
+        
+    for (int i = r, j = c; i >= 0 && j < n; i--, j++){
+        if (mat[i][j] == 1) {
+            return 0;
+            }
+        }
+ 
+    return 1;
+    }
+    void solve(int n, int mat[][10], int r, vector<vector<string>> &ans){
+       if(r==n){
+            string s="";
+             vector<string> t;
+            for(int j = 0;j<n;j++){
+                s+='.';
+            }
+            for(int j = 0;j<n;j++){
+               int p = 0;
+                for(int k = 0;k<n;k++){
+                    if(mat[j][k]==1){
+                        p=k;
+                        break;
+                    }
+                }
+                s[p]='Q';
+                t.push_back(s);
+                s[p]='.';
+            }
+           ans.push_back(t);
+// return is optional here
+        }
+        
+        for(int i = 0;i<n;i++){
+            if(isSafe(n, mat, r, i)){
+                mat[r][i]=1;
+                solve(n, mat, r+1, ans);
+                mat[r][i]=0;
+            }
+        }
+        
+    }
+    vector<vector<string>> solveNQueens(int n) {
+        int mat[10][10] = {0};
+        vector<vector<string>> ans;
+        solve(n, mat, 0, ans);
+        return ans;
+    }
+};
+
+// Optimised solution
+
+// FeedBack and more
