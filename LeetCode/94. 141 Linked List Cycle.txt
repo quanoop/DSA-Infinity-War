@@ -1,0 +1,38 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        if(head==NULL) return false;
+        ListNode* a = head;
+        ListNode* b = head->next;
+        while(a and b and b->next){
+            if(a==b){
+                return true;
+            }
+            if(a==NULL or b==NULL){
+                return false;
+            }
+            a=a->next;
+            b=b->next->next;
+        }
+        return false;
+    }
+};
+
+// Optimised solution
+
+// FeedBack and more

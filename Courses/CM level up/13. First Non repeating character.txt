@@ -1,0 +1,86 @@
+// Q:
+First Non-Repeating Character
+Given a stream of characters (lowercase alphabets), find the first non-repeating character from stream. You need to tell the first non-repeating character in O(1) time at each index. If for a current index there is no such character return '0' for that particular index.
+
+Input Format:
+
+A String S of length N passed as a parameter to the given function.
+
+Output Format:
+
+Return a vector of characters of length N where V[i] character represents first non-repeating character from S[0] to S[i].
+
+Constraints:
+
+1<=N<=100
+
+Expected time complexity:
+
+O(N) where N is the total number of input characters in one testcase. (Use the property of queue)
+
+
+
+Sample Testcase :
+
+Input:
+
+aabcbcd
+
+Output:
+
+a 0 b b c 0 d
+
+Explanation:
+
+At index 0, 'a' is the only character we have and hence non repeating.
+
+At index 1, we have 2 characters till now and they are same, hence no non-repeating character.
+
+At index 2, 'b' is the only non repeating character till now.
+
+At index 3, 'b' and 'c' are non repeating characters, but 'b' is the FIRST non repeating character till now.
+
+At index 4, 'c' is the only non repeating character till now.
+
+At index 5, there is no non repeating character till now.
+
+At index 6, 'd' is the only and first non repeating character.
+
+  
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+#include<bits/stdc++.h>
+using namespace std;
+
+
+vector<char> FindFirstNonRepeatingCharacter(string S){
+    unordered_map<char, int> map;
+    queue<char> q;
+    vector<char> ans;
+    int n = S.length();
+    for(int i =0;i<n;i++){
+        if(map.find(S[i])==map.end()){
+            map[S[i]] = 1;
+        } else {
+            map[S[i]]+=1;
+        }
+        if(map[S[i]]==1){
+            q.push(S[i]);
+        }
+        while(map[q.front()]>1){
+            q.pop();
+        }
+        if(!q.empty()){
+            ans.push_back(q.front());
+        } else ans.push_back('0');
+    }
+    return ans;
+}
+
+// Optimised solution
+
+// FeedBack and more
