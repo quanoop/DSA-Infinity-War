@@ -1,0 +1,44 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    int thirdMax(vector<int>& nums) {
+        long int a,b,c;
+        a=b=c=-10000000000;
+        int n = nums.size();
+        for(int i = 0;i<n;i++){
+            if(nums[i]>=a){
+                if(nums[i]==a) continue;
+                c=b;
+                b=a;
+                a=nums[i];
+            } else if(nums[i]>=b){
+                if(nums[i]==b) continue;
+                c=b;
+                b=nums[i];
+            } else if(nums[i]>=c){
+                if(nums[i]==c) continue;
+                c=nums[i];
+            }
+                
+        }
+        if(c!=-10000000000)
+        return (int)c;
+        return (int)a;
+    }
+};
+
+// Optimised solution
+Look at the leetcode solution section. There we found a new concept of numeric_limits 
+long long firstMax = numeric_limits<long long>::min();
+        long long secondMax = numeric_limits<long long>::min();
+        long long thirdMax = numeric_limits<long long>::min();
+
+Like these.
+
+// FeedBack and more

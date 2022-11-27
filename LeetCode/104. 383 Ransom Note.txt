@@ -1,0 +1,62 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    bool canConstruct(string ransomNote, string magazine) {
+        unordered_map<char, int> map1,map2;
+        int n = magazine.size();
+        for(int i = 0;i<n;i++){
+            if(map1.find(magazine[i])==map1.end()){
+                map1[magazine[i]] = 1;
+            } 
+            else map1[magazine[i]]+=1;
+        }
+        
+        int m = ransomNote.size();
+        for(int i = 0;i<m;i++){
+            if(map2.find(ransomNote[i])==map2.end()){
+                map2[ransomNote[i]] = 1;
+            } 
+            else map2[ransomNote[i]]+=1;
+        }
+        
+        for(auto x : map2){
+            if(map1.find(x.first)== map1.end() or map1[x.first]<x.second) return false;
+        }
+        
+        return true;
+        
+        
+    }
+};
+
+// Optimised solution
+class Solution {
+public:
+    bool canConstruct(string ransomNote, string magazine) {
+        //ransomeNote can be constructed from magazine if magazine contains all the letter used in making ransomeNote
+        unordered_map<char, int> m;
+        
+        //store all the char of magazine so that it can be searched easily
+        for(auto x: magazine){
+            m[x]++;
+        }
+        
+		//iterate ransomeNote 
+        for(auto x: ransomNote){
+		//magazine  have this char of ransomeNote, used once, decrease frequency
+		// when hit's zero return false.(we r using post decrement)
+            if(!m[x]--){
+                return false;
+            }
+        }
+        return true;
+    }
+};
+
+// FeedBack and more

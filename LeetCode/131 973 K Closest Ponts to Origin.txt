@@ -1,0 +1,43 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Compare {
+    public:
+    bool operator()(vector<int> A, vector<int> B){
+        return sqrt(A[0]*A[0] + A[1]*A[1]) < sqrt(B[0]*B[0] + B[1]*B[1]);
+    }
+};
+
+class Solution {
+public:
+    
+    vector<vector<int>> kClosest(vector<vector<int>>& points, int k) {
+        priority_queue< vector<int>, vector<vector<int>>, Compare> heap(points.begin(), points.begin() + k);
+        int n = points.size();
+        for(int i=k;i<n;i++){
+            vector<int> B = heap.top();
+            if(sqrt(points[i][0]*points[i][0] + points[i][1]*points[i][1]) < sqrt(B[0]*B[0] + B[1]*B[1])){
+                
+                heap.pop();
+                heap.push(points[i]);
+                
+            }
+        }
+        
+        vector<vector<int>> ans;
+        while(!heap.empty()){
+            ans.push_back(heap.top());
+            heap.pop();
+        }
+        
+        return ans;
+    }
+};
+
+// Optimised solution
+
+// FeedBack and more

@@ -1,0 +1,86 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class node{
+    public:
+    node* left;
+    node* right;
+};
+
+class trie{
+    node* root;
+    public:
+    trie(){
+        root = new node();
+    }
+    
+    void insert(int e){
+        node* temp = root;
+        for(int i = 31;i>=0;i--){
+            int bit = (e>>i)&1;
+            if(bit==0){
+                if(temp->left == NULL){
+                    temp->left = new node();
+                }
+                temp=temp->left;
+            }
+            else {
+                if(temp->right==NULL){
+                    temp->right=new node();
+                }
+                temp = temp->right;
+            }
+        }
+    }
+    
+    int xor_helper(int e){
+        int curr = 0;
+        node* temp = root;
+        for(int j=31;j>=0;j--){
+            int bit = (e>>j)&1;
+            if(bit==0){
+                if(temp->right!=NULL){
+                    temp = temp->right;
+                    curr = curr + (1<<j);
+                } else {
+                    temp = temp->left;
+                }
+            } else {
+                if(temp->left!=NULL){
+                    temp = temp->left;
+                    curr = curr + (1<<j);
+                } else {
+                    temp = temp->right;
+                }
+            }
+        }
+        return curr;
+    }
+    
+    int max_xor(vector<int> nums){
+        int n = nums.size();
+        int ans = 0;
+        for(int i = 0;i<n;i++){
+            insert(nums[i]);
+            int current = xor_helper(nums[i]);
+            ans = max(current, ans);
+        }
+        return ans;
+    }
+};
+
+class Solution {
+public:
+    int findMaximumXOR(vector<int>& nums) {
+        trie t;
+        return t.max_xor(nums);
+    }
+};
+
+// Optimised solution
+
+// FeedBack and more

@@ -1,0 +1,35 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    vector<vector<int>> ans;
+    void helper(int k, int n, int s, vector<int> &com, int id){
+        if(k==com.size() and s==n){
+            ans.push_back(com);
+            return;
+        }
+        if(s>n || k<com.size()) return;
+        
+        for(int i = id;i<=9;i++){
+            com.push_back(i);
+            s = s + i;
+            helper(k,n,s,com,i+1);
+            com.pop_back();
+            s=s-i;
+        }
+    }
+    vector<vector<int>> combinationSum3(int k, int n) {
+        vector<int> v;
+        helper(k, n, 0, v, 1);
+        return ans;
+    }
+};
+
+// Optimised solution
+
+// FeedBack and more

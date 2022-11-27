@@ -1,0 +1,36 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        string ans="";
+        int n = s.length();
+        for(int i = 0;i<n;i++){
+            if(s[i]==' ' || !isalnum(s[i])){
+                continue;
+            } else {
+                if(isupper(s[i])){
+                    ans+=tolower(s[i]);
+                } else {
+                    ans+=s[i];
+                }
+            }
+        }
+        
+        string temp = ans;
+        reverse(ans.begin(), ans.end());
+        if(temp==ans)
+            return true;
+        return false;
+    }
+};
+
+// Optimised solution
+Optimised solution can be the one in which we make changes in the given string using two pointer approach to remove spaces and other non alpha numeric characters. Then take the substring of valid ones. make a function is reverse and use it.
+
+// FeedBack and more

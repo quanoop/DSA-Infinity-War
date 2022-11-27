@@ -1,0 +1,31 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+My initial approach was to maintain two arrays of left minimum and right maximum. And for every element we will check if its left minimum is less than to it and its right maximum is greater than it. In that case we will return true. But the most optimised one is given below.
+
+// Solution Code
+class Solution {
+public:
+    bool increasingTriplet(vector<int>& nums) {
+        int first = INT_MAX, second = INT_MAX;
+        int n = nums.size();
+        for(int i = 0; i < n; i += 1) {
+            if(nums[i] <= first) {
+                first = nums[i];
+            } else if(nums[i] <= second) {
+                second = nums[i];
+            } else {
+                //found last element of triplet
+                return true;
+            }
+        }
+        
+        return false;
+    }
+};
+
+// Optimised solution
+
+// FeedBack and more

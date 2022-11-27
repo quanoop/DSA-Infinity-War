@@ -1,0 +1,36 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+There are other ways to solve this problem too. It was very simple approach to maintain a sorted array but that was causing a TLE, again I tried to maintain the sorted array by inserting the element to its correct position but that also ends up in having TLE. So the best solution is that we break up the whole list in two priority queues. One with max heap and another with min heap. In this way our work will be done in log n of the time and there will be no TLE.
+
+// Solution Code
+class MedianFinder {
+public:
+    priority_queue<int> maxh;
+    priority_queue<int, vector<int>, greater<int>> minh;
+    bool even = true;
+    MedianFinder() {
+    }
+    void addNum(int num) {
+        even =!even;
+        if(!even){
+        maxh.push(num);
+        minh.push(maxh.top());
+        maxh.pop();}
+        else{
+              minh.push(num);
+              maxh.push(minh.top());
+              minh.pop();
+        }
+      
+    }
+    double findMedian() {
+        if (!even) return minh.top();
+        return (maxh.top() + minh.top()) / 2.0;
+    }
+};
+// Optimised solution
+
+// FeedBack and more

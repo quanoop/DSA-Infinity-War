@@ -1,0 +1,35 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    int helper(int n){
+        int final = 0;
+        while(n){
+            int rem = n%10;
+            final = final + pow(rem,2);
+            n = n/10;
+        }
+        
+        return final;
+        
+    }
+    bool isHappy(int n) {
+        set<int> s;
+        while(n>1 and s.find(n)==s.end()){
+            s.insert(n);
+            n = helper(n);
+        }
+        return n==1;
+    }
+};
+
+// Optimised solution
+
+See its solution section on leetcode.
+
+// FeedBack and more

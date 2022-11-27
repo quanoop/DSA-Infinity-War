@@ -1,0 +1,24 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+Understanding this problem was little difficult but the exams sometimes helps a lot in such cases. To solve this problem recursively there were only two cases and both were explained well in the given examples.
+
+// Solution Code
+class Solution {
+public:
+    TreeNode* insertIntoMaxTree(TreeNode* root, int val) {
+        if (root && root->val > val) {
+            root->right = insertIntoMaxTree(root->right, val);
+            return root;
+        }
+        TreeNode* node = new TreeNode(val);
+        node->left = root;
+        return node;  
+    }
+};
+
+// Optimised solution
+
+// FeedBack and more

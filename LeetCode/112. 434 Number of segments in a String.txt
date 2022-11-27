@@ -1,0 +1,38 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    int countSegments(string s) {
+        int n = s.length(), ans=0;
+        if(n==0) return 0;
+        for(int i = 0 ;i<n;i++){
+            if(s[i]!=' ') ans++;
+            while(s[i]!=' ' and i<n){
+                i++;
+            }
+        }
+        return ans;
+    }
+};
+
+// Optimised solution
+class Solution {
+    public int countSegments(String s) {
+        int segmentCount = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            if ((i == 0 || s.charAt(i-1) == ' ') && s.charAt(i) != ' ') {
+                segmentCount++;
+            }
+        }
+
+        return segmentCount;
+    }
+}
+
+// FeedBack and more

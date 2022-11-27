@@ -1,0 +1,50 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        if(head==NULL) return head;
+        ListNode* front = head;
+        ListNode* end=head;
+        end=end->next;
+        while(front and end){
+            while(front and end and end->val==front->val){
+                end=end->next;
+                front->next=end;
+            }
+           front=front->next; 
+        }
+        return head;
+    }
+};
+
+// Optimised solution
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        /* if head = NULL */
+        if(!head) return head;
+        /* setting the curr at head */
+        ListNode *curr = head;
+        while(curr->next){
+            /* if curr value == curr next value the we have to delete next value */
+            if(curr->val == curr->next->val){
+                /* stroing next address for deleting further */
+                ListNode *temp = curr->next;
+                
+                /* changing curr pointer to next of next */
+                curr->next = curr->next->next;
+                delete temp;
+            }
+            else curr = curr->next;
+        }
+        return head;
+    }
+};
+
+// FeedBack and more

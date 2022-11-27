@@ -1,0 +1,81 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        vector<int> v;
+        while(head){
+            v.push_back(head->val);
+            head=head->next;
+        }
+        
+        int s = 0;
+    int e = v.size()-1;
+    while(s<=e){
+        if(v[s]!=v[e]) return false;
+        s++;
+        e--;
+    }
+    
+    return true;
+    }
+    
+};
+
+// Optimised solution
+
+Palindrome -> List should be same if read from HEAD or from TAIL.
+
+But travelling backwards in singly linked list is not possible.
+But with recursion we can do something like :
+
+Have a BASE case.
+Check for answer recursively in leftover list. [ head->next ]
+Then check for current node.
+Now at every level we have move NEXT to next node.
+For traversing backward :
+
+Keep a pointer at initially at head. temp = head
+We move the pointer to NEXT whenever we compared its value to the current node in recursive function.
+How will this work ?
+
+temp node will be first compared when head will be pointing to last node.
+Going back to previous recursive call -> previous of head will be compared to next of temp.
+This all will be done recursively.
+
+C++
+
+class Solution {
+public:
+    ListNode* temp;
+    
+    bool check(ListNode* head) {
+        if (NULL == head) return true;
+        bool res = check(head->next) & (temp->val == head->val);
+        temp = temp->next;
+        return res;
+    }
+    
+    bool isPalindrome(ListNode* head) {
+        temp = head;
+        return check(head);
+    }
+};
+
+
+// FeedBack and more

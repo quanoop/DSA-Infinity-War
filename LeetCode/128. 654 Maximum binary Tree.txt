@@ -1,0 +1,44 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+This is also called a Cartesian Tree. One interesting property is that if we do an in-order traversal, we get the array back which we used to create it.
+// Solution Code
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* helper(int s, int e, vector<int>& nums){
+        if(s>e) return NULL;
+        int index;
+        int m = s;
+        for(int i = s;i<=e;i++){
+            if(nums[i]>nums[m]){
+                m = i;                
+            }
+        }
+        TreeNode* root = new TreeNode(nums[m]);
+        root->left = helper(s, m-1, nums);
+        root->right = helper(m+1, e, nums);
+        
+        return root;
+    }
+    TreeNode* constructMaximumBinaryTree(vector<int>& nums) {
+        return helper(0, nums.size()-1, nums);
+    }
+};
+
+// Optimised solution
+The solution in Leetcode solution section is very similar to the above. You can take a look if you want to understand it more deeply.
+
+// FeedBack and more

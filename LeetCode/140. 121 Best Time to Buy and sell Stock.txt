@@ -1,0 +1,60 @@
+// Q:
+
+// Comments
+
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int n = prices.size();
+        vector<int> left, right(n,0);
+        int min = INT_MAX;
+        for(int i = 0;i<n;i++){
+            if(prices[i]<min){
+                min = prices[i];
+            }
+            left.push_back(min);
+        }
+        
+        int max = INT_MIN;
+        for(int i = n-1;i>=0;i--){
+            if(prices[i]>max){
+                max = prices[i];
+            }
+            right[i]=max;
+        }
+        
+        int maxd = INT_MIN;
+        for(int i = 0;i<n;i++){
+            if(right[i]-left[i]>maxd){
+                maxd = right[i]-left[i];
+            }
+        }
+        
+        return maxd;
+        
+    }
+};
+
+
+// Optimised solution
+{
+        int lsf = Integer.MAX_VALUE; // least so far
+        int op = 0; // overall profit
+        int pist = 0; // profit if sold today
+        
+        for(int i = 0; i < prices.length; i++){
+            if(prices[i] < lsf){ // if we found new buy value which is more smaller then previous one
+                lsf = prices[i]; // update our least so far
+            }
+            pist = prices[i] - lsf; // calculating profit if sold today by, Buy - sell
+            if(op < pist){ // if pist is more then our previous overall profit
+                op = pist; // update overall profit
+            }
+        }
+        return op; // return op 
+
+// FeedBack and more

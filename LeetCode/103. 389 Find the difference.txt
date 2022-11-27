@@ -1,0 +1,35 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    char findTheDifference(string s, string t) {
+        unordered_map<char, int> map;
+        int n = s.size();
+        for(int i = 0;i<n;i++){
+            if(map.find(s[i])==map.end()){
+                map[s[i]] = 1;
+            } 
+            else map[s[i]]+=1;
+        }
+        for(int i = 0;i<=n;i++){
+            if(map.find(t[i])==map.end() or map[t[i]]==0) return t[i];
+            
+            else map[t[i]]-=1;
+        }
+        return t[n];
+    }
+};
+
+// Optimised solution
+
+We can take bitwise XOR of all the characters. The remaining one will be the answer.
+
+Some people have also posted the answer by taking difference of all characters, have a look at those solutions as well.
+
+// FeedBack and more
+

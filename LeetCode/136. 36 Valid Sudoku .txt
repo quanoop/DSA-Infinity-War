@@ -1,0 +1,58 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    bool isValidSudoku(vector<vector<char>>& board) {
+        unordered_map<char, int> map;
+        for(int i = 0;i<9;i++){
+            for(int j = 0;j<9;j++){
+                if(board[i][j]!='.'){
+                    if(map.find(board[i][j])!=map.end()){
+                        return false;
+                    }
+                    map[board[i][j]]=1;
+                }
+            }
+            map.clear();
+        }
+        
+        for(int i = 0;i<9;i++){
+            for(int j = 0;j<9;j++){
+                if(board[j][i]!='.'){
+                    if(map.find(board[j][i])!=map.end()){
+                        return false;
+                    }
+                    map[board[j][i]]=1;
+                }
+            }
+            map.clear();
+        }
+        
+        for(int i=0;i<9;i+=3){
+            for(int j=0;j<9;j+=3){
+                for(int k = i;k<i+3;k++){
+                    for(int l=j;l<j+3;l++){
+                        if(board[k][l]!='.'){
+                            if(map.find(board[k][l])!=map.end()){
+                            return false;
+                            }
+                            map[board[k][l]]=1;
+                        }
+                    }
+                }
+                map.clear();
+            }
+        }
+        
+        return true;
+    }
+};
+
+// Optimised solution
+
+// FeedBack and more

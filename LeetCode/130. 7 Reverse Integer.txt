@@ -1,0 +1,38 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    int reverse(int a) {
+        long long int x = a;
+        bool isnegative = false;
+        if(x<0){
+            isnegative = true;
+            x = -1*x;
+        }
+        while(x%10==0 and x!=0){
+            x=x/10;
+        }
+        long long int ans=0;
+        while(x){
+            int temp = x%10;
+            ans = ans*10 + temp;
+            x=x/10;
+        }
+        if(isnegative){
+            ans=-1*ans;
+        }
+        if(ans>INT_MAX || ans<INT_MIN){
+            return 0;
+        }
+        return ans;
+    }
+};
+
+// Optimised solution
+
+// FeedBack and more

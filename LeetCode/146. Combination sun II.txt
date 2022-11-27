@@ -1,0 +1,37 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+     vector<vector<int>> ans;
+    void helper(vector<int>& candidates, int t, int i, vector<int> &com){
+        if(t == 0){
+            ans.push_back(com);
+            return;
+        }
+        
+        if(i>=candidates.size() || t < 0) return;
+        
+        for(int j = i;j<candidates.size();j++){
+            if(j!=i and candidates[j] == candidates[j-1]) continue;
+            com.push_back(candidates[j]);
+            helper(candidates, t - candidates[j], j+1, com);
+            com.pop_back();
+        }
+    }
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        vector<int> temp;
+        sort(candidates.begin(), candidates.end());
+        helper(candidates, target, 0, temp);
+        return ans;
+    }
+};
+
+// Optimised solution
+Look at the solution section of leetcode
+
+// FeedBack and more
