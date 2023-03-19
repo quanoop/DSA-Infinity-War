@@ -1,0 +1,39 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    int helper(vector<vector<int>>& triangle, int i, int j, int m, vector<vector<int>> &dp){
+        if(i>=m) return 0;
+        
+        if(dp[i][j]!=-1) return dp[i][j];
+
+        int n = triangle[i].size();
+
+        int ans1, ans2;
+        ans1 = ans2 = INT_MAX;
+        ans1 = helper(triangle, i+1, j, m, dp) + triangle[i][j];
+        ans2 = helper(triangle, i+1, j+1, m, dp) + triangle[i][j];
+
+        dp[i][j] = min(ans1, ans2);
+
+        return dp[i][j];
+    }
+
+    int minimumTotal(vector<vector<int>>& triangle) {
+        int m = triangle.size();
+        int n = triangle[m-1].size();
+        vector<vector<int>> dp(m, vector<int>(n, -1));
+        
+        return helper(triangle, 0, 0, m, dp);
+        
+    }
+};
+
+// Optimised solution
+
+// FeedBack and more

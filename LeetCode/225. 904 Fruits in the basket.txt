@@ -1,0 +1,47 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    int totalFruit(vector<int>& fruits) {
+
+    int n = fruits.size();
+    
+    if(n<3) return n;
+
+    unordered_map<int,int> map;
+
+    for(int i = 0;i<2;i++){
+        map[fruits[i]]++;
+    }
+
+    int s = 0;
+
+    int ans = 1;
+
+    for(int e = 2;e<n;e++){
+        map[fruits[e]]++;
+        while(map.size()>2){
+           map[fruits[s]]--;
+           if(map[fruits[s]]==0){
+               map.erase(fruits[s]);
+           }
+           s++;
+        }
+
+        ans = max(ans, e - s + 1);
+    }
+
+    return ans;
+        
+    }
+};
+
+// Optimised solution
+
+
+// FeedBack and more

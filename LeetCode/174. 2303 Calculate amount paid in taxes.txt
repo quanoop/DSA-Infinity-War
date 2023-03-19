@@ -1,0 +1,31 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    double calculateTax(vector<vector<int>>& brackets, int income) {
+        double ans = 0;
+        double curr = 0;
+        int n = brackets.size();
+        int i = 0;
+        while(curr < income and i < n){
+            if(brackets[i][0] >income){
+                ans += (income - curr)*(brackets[i][1]/100.0);
+                curr = income;
+            } else {
+                ans+= (brackets[i][0]-curr)*(brackets[i][1]/100.0);
+                curr = brackets[i][0];
+            }
+            i++;
+        }
+        return ans;
+    }
+};
+
+// Optimised solution
+
+// FeedBack and more

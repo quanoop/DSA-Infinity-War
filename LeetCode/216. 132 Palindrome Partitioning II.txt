@@ -1,0 +1,51 @@
+// Q:
+
+// Comments
+My initial solution is not the optimised one. There are other optimised methods to solve this problem. Look at the solution if it is not clear to you.
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    bool isPalindrome(string &temp){
+        int i=0;
+    int j=temp.size()-1;
+    while(i<j)
+    {
+        if(temp[i]!=temp[j]) return false;
+        i++;
+        j--;
+    }
+    return true;
+    }
+    int helper(string s, int idx, vector<int>&dp){
+        if(idx==s.size()) return 0;
+
+        if(dp[idx]!=-1) return dp[idx];
+        int ans = INT_MAX;
+        string cs = "";
+
+        for(int i = idx;i<s.size();i++){
+            cs+=s[i];
+            if(isPalindrome(cs)){
+                int cur = 1 + helper(s, i+1, dp);
+                ans = min(ans, cur);
+            }
+        }
+
+        return dp[idx] = ans;
+
+
+    }
+    int minCut(string s) {
+        vector<int> dp(s.size()+1, -1);
+        int ans = helper(s, 0, dp);
+
+        return ans-1;
+    }
+};
+
+// Optimised solution
+
+// FeedBack and more

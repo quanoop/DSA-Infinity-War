@@ -1,0 +1,41 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    string convert(string s, int numRows) {
+
+        vector<vector<int>> v(numRows);
+        string ans="";
+        if(numRows == 1) return s;
+        int n = s.size();
+        int d = -1;
+        int p = 0;
+        for(int i = 0;i<n;i++){
+            v[p].push_back(s[i]);
+            if(p==0 or p==numRows-1) d*=-1;
+            p+=d;
+        }
+
+        for(int i = 0;i<numRows;i++){
+            int m = v[i].size();
+            for(int j = 0;j<m;j++){
+                ans+=v[i][j];
+            }
+        }
+
+        return ans;
+
+        
+    }
+};
+
+// Optimised solution
+
+Read its official solution. Both of the approaches given there are very different form yours.
+
+// FeedBack and more

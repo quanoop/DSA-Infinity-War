@@ -1,0 +1,41 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    long long distinctNames(vector<string>& ideas) {
+        long long ans = 0;
+        int n = ideas.size();
+        string s;
+        unordered_set<string> set[26];
+        for(int i = 0;i<n;i++){
+            set[ideas[i][0]-'a'].insert(ideas[i].substr(1));
+        }
+
+        for(int i = 0;i<25;i++){
+            for(int j = i+1;j<26;j++){
+                int common = 0;
+
+                for(auto x : set[i]){
+                    if(set[j].count(x)){
+                        common++;
+                    }
+                }
+
+                ans += 2LL*(set[i].size()-common)*(set[j].size()-common);
+            }
+        }
+        
+        return ans;
+    }
+};
+
+// Optimised solution
+
+
+// FeedBack and more
+Understanding the reverse process is important in the end otherwise the understanding is easy.

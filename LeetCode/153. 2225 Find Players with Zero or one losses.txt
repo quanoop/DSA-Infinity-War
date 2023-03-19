@@ -1,0 +1,57 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    vector<vector<int>> findWinners(vector<vector<int>>& matches) {
+        unordered_map<int ,int> winall, lost;
+        
+        for(vector<int> x: matches){
+            int w = x[0];
+            int l = x[1];
+            if(lost.find(w)==lost.end()){
+                winall[w]++;
+            } else {
+                winall[w] = -1;
+            }
+            
+            if(winall.find(l)!=winall.end()){
+                winall[l] = -1;
+            }
+            
+            lost[l]++;
+            
+        }
+        
+        vector<int> win;
+        for(auto x: winall){
+            if(x.second > 0){
+                win.push_back(x.first);
+            }
+        }
+        sort(win.begin(), win.end());
+        
+        vector<int> lost1;
+        for(auto x: lost){
+            if(x.second == 1){
+                lost1.push_back(x.first);
+            }
+        }
+        
+        sort(lost1.begin(), lost1.end());
+        
+        vector<vector<int>> ans;
+        ans.push_back(win);
+        ans.push_back(lost1);
+        
+        return ans;
+    }
+};
+
+// Optimised solution
+
+// FeedBack and more

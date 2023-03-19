@@ -1,0 +1,53 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    int helper(vector<int>& nums, vector<int>& dp, int i, int e){
+        if(i>=e) return 0;
+        if(dp[i]!=-1) return dp[i];
+
+        return dp[i] = max(helper(nums, dp, i+2, e) + nums[i], helper(nums,dp,i+1, e));
+
+    }
+    int rob(vector<int>& nums) {
+        if(nums.size()==1) return nums[0];
+        vector<int> dp(nums.size(), -1);
+        int ans =  helper(nums, dp, 0, nums.size()-1);
+        vector<int> dp2(nums.size(), -1);
+        ans = max(ans, helper(nums, dp2, 1,nums.size()));
+
+        return ans;
+
+    }
+};
+
+// Optimised solution
+class Solution {
+public:
+    int helper(vector<int>& nums, int i, int e){
+
+        vector<int> dp(nums.size());
+        dp[i] = nums[i];
+        dp[i+1] = max(nums[i+1], nums[i]);
+        for(int j = i+2;j<=e;j++){
+            dp[j] = max(dp[j-1], nums[j]+dp[j-2]);
+        }
+        return dp[e];
+
+    }
+    int rob(vector<int>& nums) {
+        if(nums.size()==1) return nums[0];
+        if(nums.size()==2) return max(nums[0], nums[1]);
+        int n = nums.size()-1;
+
+        return max(helper(nums, 0, n-1), helper(nums, 1, n));
+
+    }
+};
+
+// FeedBack and more

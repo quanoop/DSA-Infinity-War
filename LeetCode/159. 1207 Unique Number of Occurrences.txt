@@ -1,0 +1,28 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    bool uniqueOccurrences(vector<int>& arr) {
+        unordered_map<int, int> map;
+        for(int num : arr){
+            map[num]++;
+        }
+        
+        unordered_set<int> set;
+        
+        for(auto x: map){
+            set.insert(x.second);
+        }
+        
+        return set.size() == map.size();
+    }
+};
+
+// Optimised solution
+
+// FeedBack and more

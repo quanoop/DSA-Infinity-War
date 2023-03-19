@@ -1,0 +1,61 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+
+class Solution {
+public:
+
+    int merge(vector<int> &nums, int s, int m, int e){
+        
+       int i=s;
+        int j=m+1;
+        
+       int ans = 0;
+        
+        while(i<=m and j<=e)
+        {
+            if(nums[i]>2*1ll*nums[j])
+            {
+                ans+=(m-i+1);
+                j++;
+            }
+            else
+            {
+                i++;
+            }
+        }
+		// This may take upto nlogn time in worst case
+        sort(nums.begin()+s,nums.begin()+e+1);
+
+        return ans;
+
+    }
+
+    int sortit(vector<int>& nums, int s, int e){
+        int ans = 0;
+        if(s>=e) return 0;
+    
+            int m = (e+s)/2;
+            ans+=sortit(nums, s, m);
+            ans+=sortit(nums, m+1, e);
+
+            ans+= merge(nums, s, m, e);
+    
+
+        return ans;
+
+    }
+
+    int reversePairs(vector<int>& nums) {
+        return sortit(nums, 0, nums.size()-1);
+    }
+};
+
+// Optimised solution
+
+
+// FeedBack and more

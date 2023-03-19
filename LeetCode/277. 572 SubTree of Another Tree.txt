@@ -1,0 +1,64 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    bool helper(TreeNode* root, TreeNode* subRoot){
+        if(root == NULL and subRoot==NULL) return true;
+
+        if(root == NULL and subRoot!=NULL or root!=NULL and subRoot==NULL) return false;
+
+        if(root->val!=subRoot->val) return false;
+
+        return helper(root->left, subRoot->left) and helper(root->right, subRoot->right);
+
+        
+    }
+
+    bool isSubtree(TreeNode* root, TreeNode* subRoot) {
+        bool ans = false;
+        if(root->val==subRoot->val) ans = ans || helper(root, subRoot);
+
+        if(root->left and root->right) ans = ans || isSubtree(root->left, subRoot) || isSubtree(root->right, subRoot);
+
+        if(root->right) ans = ans || isSubtree(root->right, subRoot);
+        if(root->left) ans = ans ||  isSubtree(root->left, subRoot);
+
+        return ans; 
+    }
+};
+
+// Optimised solution
+
+class Solution {
+public:
+   
+   bool isSametree(TreeNode* s, TreeNode* t){
+       if(!s || !t){
+           return s==NULL && t==NULL;
+       } 
+       else if(s->val == t->val){    
+           return isSametree(s->left,t->left) && isSametree(s->right,t->right);
+       }
+       else{
+           return false;
+       }
+   }
+   bool isSubtree(TreeNode* s, TreeNode* t) {
+         if(!s){
+             return false;
+         }   
+         else if(isSametree(s,t)){
+             return true;
+         }
+         else{
+             return isSubtree(s->left,t) || isSubtree(s->right,t);
+         }
+   }
+};
+
+// FeedBack and more

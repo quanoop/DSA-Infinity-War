@@ -1,0 +1,37 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    int maximalNetworkRank(int n, vector<vector<int>>& roads) {
+        vector<unordered_set<int>> graph(n);
+        for(vector<int> v: roads){
+            graph[v[0]].insert(v[1]);
+            graph[v[1]].insert(v[0]);
+        }
+        int ans = 0;
+        for(int i = 0;i<n;i++){
+            for(int j = i+1;j<n;j++){
+                int temp = graph[i].size();
+                temp+=graph[j].size();
+                int s = graph[i].size();
+                if(graph[j].count(i)!=0){
+                    temp--;
+                }
+                ans = max(ans,temp);
+
+            }
+            
+        }
+
+        return ans;
+    }
+};
+
+// Optimised solution
+
+// FeedBack and more

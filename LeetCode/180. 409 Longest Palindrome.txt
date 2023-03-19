@@ -1,0 +1,38 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+
+// Optimised solution
+class Solution {
+public:
+    int longestPalindrome(string s) {
+        int n = s.length();
+        unordered_map<char, int> map;
+        for(int i = 0;i<n;i++){
+            map[s[i]]++;
+        }
+        int maxodd = 0;
+        int evensum = 0;
+        int oddsum = 0;
+        for(auto x:map){
+            if(x.second%2==0){
+                evensum+=x.second;
+            } else {
+                maxodd = max(maxodd, x.second);
+                oddsum+=x.second-1;
+            }
+        }
+
+        if(maxodd){
+            maxodd = 1;
+        }
+
+        return maxodd + evensum + oddsum;
+    }
+};
+
+// FeedBack and more

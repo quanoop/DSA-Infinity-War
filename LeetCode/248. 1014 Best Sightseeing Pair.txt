@@ -1,0 +1,34 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    int maxScoreSightseeingPair(vector<int>& values) {
+        int n = values.size();
+        int steps = 0;
+        int ans = 0;
+        int me = values[0];
+        for(int i = 1;i<n;i++){
+            steps++;
+            if(values[i]+steps>me){
+                ans = max(ans, me + values[i] - steps);
+                me = values[i];
+                steps = 0;
+            } else {
+                ans = max(ans, me + values[i] - steps);
+            }
+            
+        }
+
+        return ans;
+    }
+};
+
+// Optimised solution
+
+
+// FeedBack and more

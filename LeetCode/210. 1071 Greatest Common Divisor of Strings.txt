@@ -1,0 +1,85 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    string gcdOfStrings(string str1, string str2) {
+        int l1 = str1.length();
+        int l2 = str2.length();
+
+        string final = "";
+
+        string ans = "";
+
+        int p = min(l1, l2);
+
+        for(int i = 0;i<p;i++){
+            string temp = ans;
+            if(str1[i]==str2[i]){
+                temp+=str1[i];
+            } else {
+                break;
+            }
+            int l = temp.length();
+            if(l1%l==0 and l2%l==0)
+            {
+
+            int m = l1/l;
+            int n = l2/l;
+            string s = "";
+            for(int i = 0;i<m;i++){
+                s+=temp;
+            }
+            string t = "";
+            for(int i = 0;i<n;i++){
+                t+=temp;
+            }
+            if(str1==s and str2==t){
+                ans = temp;
+                final = temp;
+            }
+
+            
+
+            }
+
+            ans = temp;
+            
+        }
+
+        return final;
+    }
+};
+
+// Optimised solution
+Algorithm
+Check if the concatenations of str1 and str2 in different orders are the same.
+
+If not, return "".
+Get the GCD gcdLength of the two lengths of str1 and str2.
+
+Return the prefix string with a length of gcdLength of either str1 or str2 as the answer.
+
+Implementation
+class Solution {
+public:
+    string gcdOfStrings(string str1, string str2) {
+        // Check if they have non-zero GCD string.
+        if (str1 + str2 != str2 + str1) {
+            return "";
+        }
+
+        // Get the GCD of the two lengths.
+        int gcdLength = gcd(str1.size(), str2.size());
+        return str1.substr(0, gcdLength);
+    }
+};
+
+
+// FeedBack and more
+
+This problem can have many approaches look in the Leetcode solution section for better solutions.

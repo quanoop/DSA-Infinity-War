@@ -1,0 +1,44 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    int countOdds(int low, int high) {
+
+        int ans = 0;
+        if(low%2==1 and high%2==1){
+            ans = ans + (high - low + 2)/2;
+        } else if(low%2==0 and high%2==0){
+            ans = ans + (high - low)/2;
+        } else {
+            ans += (high - low + 1)/2;
+        }
+
+        return ans;
+
+    }
+};
+
+// Optimised solution
+
+class Solution {
+public:
+    int countOdds(int low, int high) {
+        // If low is even, make it odd.
+        if (!(low & 1)) {
+            low++;
+        }
+  
+        // low could become greater than high due to incrementation
+        // if it is, the answer is 0; otherwise, use the formula.
+        return low > high ? 0 : (high - low) / 2 + 1;
+    }
+};
+
+
+// FeedBack and more
+Understanding the reverse process is important in the end otherwise the understanding is easy.

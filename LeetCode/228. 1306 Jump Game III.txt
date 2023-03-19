@@ -1,0 +1,56 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    bool helper(vector<int>&arr, int start, vector<int>& dp, vector<bool>& visited){
+        visited[start] = true;
+        if(arr[start]==0) return dp[start] = true;
+
+        int i = start + arr[start];
+        int j = start - arr[start];
+
+        bool ans = false;
+
+        if(i<arr.size() and !visited[i]){
+            ans = ans || helper(arr, i, dp, visited);
+        }
+        if(j>=0 and !visited[j]){
+            ans = ans || helper(arr, j, dp, visited);
+        }
+
+        return dp[start] = ans;
+    }
+    bool canReach(vector<int>& arr, int start) {
+        vector<int> dp(arr.size(), -1);
+        vector<bool> visited(arr.size(), false);
+
+        return helper(arr, start, dp, visited);
+    }
+};
+
+// Optimised solution
+
+class Solution {
+public:
+    
+    bool ff(vector<int>& arr, vector<bool>& visited, int i) {
+        if (i < 0 || i >= arr.size() || visited[i]) return false;
+        if (arr[i] == 0) return true;
+        visited[i] = true;
+        return ff(arr, visited, i + arr[i]) || ff(arr, visited, i - arr[i]);
+    }
+    
+    bool canReach(vector<int>& arr, int start) {
+        vector<bool> visited(arr.size(), false);
+        return ff(arr, visited, start);
+    }
+};
+
+
+// FeedBack and more
+Understanding the reverse process is important in the end otherwise the understanding is easy.

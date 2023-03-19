@@ -1,0 +1,54 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    TreeNode* convert(vector<int>& nums, int l, int r){
+        if(r<l) return NULL;
+        int m = (l+r+1)/2;
+        TreeNode* root = new TreeNode(nums[m]);
+        root->left = convert(nums, l, m-1);
+        root->right = convert(nums, m+1, r);
+        return root;
+    }
+    TreeNode* sortedListToBST(ListNode* head) {
+
+        vector<int> nums;
+
+        while(head){
+            nums.push_back(head->val);
+            head = head->next;
+        }
+
+        return convert(nums, 0, nums.size()-1);
+        
+    }
+};
+
+// Optimised solution
+
+public class Solution {
+public TreeNode sortedListToBST(ListNode head) {
+    if(head==null) return null;
+    return toBST(head,null);
+}
+public TreeNode toBST(ListNode head, ListNode tail){
+    ListNode slow = head;
+    ListNode fast = head;
+    if(head==tail) return null;
+    
+    while(fast!=tail&&fast.next!=tail){
+        fast = fast.next.next;
+        slow = slow.next;
+    }
+    TreeNode thead = new TreeNode(slow.val);
+    thead.left = toBST(head,slow);
+    thead.right = toBST(slow.next,tail);
+    return thead;
+}
+
+// FeedBack and more

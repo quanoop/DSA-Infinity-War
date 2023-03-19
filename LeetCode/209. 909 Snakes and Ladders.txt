@@ -1,0 +1,106 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Graph
+{
+    int V;
+    list<int> *l;
+public:
+    Graph(int v)
+    {
+        V = v;
+        l = new list<int>[V];
+    }
+
+    void addEdge(int i, int j)
+    {
+        l[i].push_back(j);
+    }
+
+     int minDice(int source, int dest)
+    {
+        vector<bool> visited(V, false);
+        vector<int> dist(V, 0);
+        vector<int> parent(V, -1);
+
+        queue<int> q;
+
+        q.push(source);
+
+        parent[source] = source;
+        dist[source] = 0;
+        visited[source] = true;
+
+        while (!q.empty())
+        {
+            int t = q.front();
+            q.pop();
+
+            for (auto nbr : l[t])
+            {
+                if (!visited[nbr])
+                {
+                    q.push(nbr);
+                    parent[nbr] = t;
+                    dist[nbr] = dist[t] + 1;
+                    visited[nbr] = true;
+                }
+            }
+        }
+        return dist[dest];
+    }
+};
+class Solution {
+public:
+    int snakesAndLadders(vector<vector<int>>& board) {
+        int n = board.size();
+        int N = n*n;
+
+        vector<int> b;
+        b.push_back(0);
+        int flag = -1;
+        for(int i = n-1;i>=0;i--){
+            vector<int> temp = board[i];
+            if(flag==1){
+                reverse(temp.begin(), temp.end());
+                flag = flag*-1;
+            } else flag = flag*-1;
+            for(int j = 0;j<n;j++){
+                b.push_back(temp[j]);
+            }
+        }
+
+        Graph g(N+1);
+
+        for(int i = 1;i<N;i++){
+            for(int j = 1;j<=6;j++){
+                int u = i;
+                int v = u + j;
+                if(v<=N and b[v]!=-1){
+                    v = b[v];
+                }
+                if(v<=N){
+                    g.addEdge(u,v);
+                }
+
+            }
+        }
+
+        int ans = g.minDice(1, N);
+        if(ans) return ans;
+
+        return -1;
+        
+    }
+};
+
+// Optimised solution
+
+// FeedBack and more
+
+According to me the main challenge in this question was to make a 1-D vector according to game board in and increasing order everything else was same to BFS shortest path algorithm for similar weight algorithm.
+This question can also be solved by the dijkshtras algorithm taking weight of each edge to be 1. Look at the leetcode official solution section for more.

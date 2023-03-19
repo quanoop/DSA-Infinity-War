@@ -1,0 +1,32 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    void helper(TreeNode* root, int n, int & ans){
+        n = n*10 + root->val;
+        if(root->right == NULL and root->left==NULL){
+            ans+=n;
+        } else if(root->left==NULL){
+            helper(root->right, n, ans);
+        } else if(root->right==NULL){
+            helper(root->left, n, ans);
+        } else {
+            helper(root->left, n, ans);
+            helper(root->right, n, ans);
+        }
+    }
+    int sumNumbers(TreeNode* root) {
+        int ans = 0;
+        helper(root, 0, ans);
+        return ans;
+    }
+};
+
+// Optimised solution
+
+// FeedBack and more

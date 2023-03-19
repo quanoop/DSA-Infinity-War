@@ -1,0 +1,36 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+int helper(vector<int> &coins, int amount, vector<vector<int>> &dp, int idx){
+
+        if(amount==0)return 1;
+        
+        if(dp[amount][idx]!=-1) return dp[amount][idx];
+
+
+        int ans = 0;
+        int c = coins.size();
+        for(int i = idx;i<c;i++){
+            if(coins[i]<=amount)
+            ans = ans + helper(coins, amount-coins[i], dp, i);
+        }
+        return dp[amount][idx] = ans;
+        
+}
+    int change(int amount, vector<int>& coins) {
+        vector<vector<int>> dp(amount+1, vector<int>(coins.size()+1, -1));
+        return helper(coins, amount, dp, 0);
+    }
+};
+
+// Optimised solution
+
+// FeedBack and more
+
+The important this is that it is a 2-d dp question because index is also changing.

@@ -1,0 +1,54 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+bool helper(vector<int>& nums, vector<int> &dp, int i){
+    if(i==nums.size()-1) return true;
+    if(dp[i]!=-1) return dp[i];
+
+
+    bool ans = false;
+    int jump = nums[i];
+    if(jump>= nums.size()-i) return true;
+    for(int j = 1;j<=jump;j++){
+        if(i+j<nums.size()){
+            ans = ans or helper(nums, dp, i+j);
+		if(ans) break; // we can use this statement to optimise more.
+        }
+    }
+    if(ans){
+        dp[i] = 1;
+        return true;
+    } else {
+        dp[i] = 0;
+        return false;
+    }
+}
+    bool canJump(vector<int>& nums) {
+        vector<int> dp(nums.size(), -1);
+        return helper(nums, dp, 0);
+    }
+};
+
+// Optimised solution
+
+dea is to work backwards from the last index. Keep track of the smallest index that can "jump" to the last index. Check whether the current index can jump to this smallest index.
+
+bool canJump(int A[], int n) {
+    int last=n-1,i,j;
+    for(i=n-2;i>=0;i--){
+        if(i+A[i]>=last)last=i;
+    }
+    return last<=0;
+};
+
+
+
+// FeedBack and more
+
+We can also try to write the tabulated solution for this problem but there are also straight forward methods because we have to check only the possibility of reaching the end.

@@ -1,0 +1,87 @@
+// Q:
+
+// Comments
+
+Inorder Traversal of BST is sorted. So finding the difference is easy.
+We can make a list or we can maintain a previous in the in-order Traversal and can update the answer.
+
+// Initial Instinct
+
+// Solution Code
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    void helper(TreeNode* root, int &ans){
+        if(root==NULL) return;
+
+        if(root->left!=NULL){
+             ans = min(ans, abs(root->val - root->left->val));
+             TreeNode* temp = root->left;
+             while(temp){
+                 ans = min(ans, abs(root->val - temp->val));
+                 temp = temp->right;
+             }
+        }
+
+        if(root->right!=NULL){
+            ans = min(ans, abs(root->val - root->right->val));
+            TreeNode* temp = root->right;
+             while(temp){
+                 ans = min(ans, abs(root->val - temp->val));
+                 temp = temp->left;
+             }
+        }
+        helper(root->left, ans);
+        helper(root->right, ans);
+    }
+
+    int minDiffInBST(TreeNode* root) {
+        int ans=INT_MAX;
+        helper(root, ans);
+        return ans;
+    }
+};
+
+// Optimised solution
+class Solution {
+public:
+    int minDistance = INT_MAX;
+    // Initially, it will be null.
+    TreeNode* prevValue;
+        
+    void inorderTraversal(TreeNode* root) {
+        if (root == NULL) {
+            return;
+        }
+        
+        inorderTraversal(root->left);
+
+        // Find the difference with the previous value if it is there.
+        if (prevValue != NULL) {
+            minDistance = min(minDistance, root->val - prevValue->val);
+        }
+        prevValue = root;
+        
+        inorderTraversal(root->right);
+    }
+    
+    int getMinimumDifference(TreeNode* root) {
+        inorderTraversal(root);
+        
+        return minDistance;
+    }
+};
+
+// FeedBack and more
+
+Question is similar to 530

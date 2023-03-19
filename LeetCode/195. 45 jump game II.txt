@@ -1,0 +1,85 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    int helper(vector<int>& nums, vector<int> &dp, int i){
+        if(i==nums.size()-1) return 0;
+        if(dp[i]!=-1) return dp[i];
+        int jumps = nums[i];
+        int ans = INT_MAX;
+        for(int j = 1;j<=jumps;j++){
+            if(i+j<nums.size())
+            ans = min(ans,helper(nums,dp, i+j));
+        }
+        if(ans!=INT_MAX)
+        ans++;
+        return dp[i] = ans;
+        
+    }
+    int jump(vector<int>& nums) {
+        vector<int> dp(nums.size()+1, -1);
+        return helper(nums, dp, 0);
+    }
+};
+
+//Tabulation Method
+int jump(vector<int>& nums) {
+	int n = size(nums);
+	vector<int> dp(n, 10001);
+	dp[n - 1] = 0;  // start from last index. No jumps required to reach end if we are already here
+	// same as above. For each index, explore all jump sizes and use the one requiring minimum jumps to reach end
+	for(int i = n - 2; i >= 0; i--) 
+		for(int jumpLen = 1; jumpLen <= nums[i]; jumpLen++) 
+			dp[i] = min(dp[i], 1 + dp[min(n - 1, i + jumpLen)]);  // min(n-1, i + jumpLen) for bounds handling
+	return dp[0];
+}
+
+// Optimised solution
+
+Solution IV (Greedy BFS)
+
+We can iterate over all indices maintaining the furthest reachable position from current index - maxReachable and currently furthest reached position - lastJumpedPos. Everytime we will try to update lastJumpedPos to furthest possible reachable index - maxReachable.
+
+Updating the lastJumpedPos separately from maxReachable allows us to maintain track of minimum jumps required. Each time lastJumpedPos is updated, jumps will also be updated and store the minimum jumps required to reach lastJumpedPos (On the contrary, updating jumps with maxReachable won't give the optimal (minimum possible) value of jumps required).
+
+We will just return it as soon as lastJumpedPos reaches(or exceeds) last index.
+
+We can try to understand the steps in code below as analogous to those in BFS as -
+
+maxReachable = max(maxReachable, i + nums[i]) : Updating the range of next level. Similar to queue.push(node) step of BFS but here we are only greedily storing the max reachable index on next level.
+
+i == lastJumpedPos : When it becomes true, current level iteration has been completed.
+
+lastJumpedPos = maxReachable : Set range till which we need to iterate the next level
+
+jumps++ : Move on to the next level.
+
+return jumps : The final answer will be number of levels in BFS traversal.
+
+For eg. Take the example : nums = [2,3,1,4,1,1,1,2]. This approach proceeds as illustrated in image below -
+
+
+
+int jump(vector<int>& nums) {
+	int n = size(nums), i = 0, maxReachable = 0, lastJumpedPos = 0, jumps = 0;
+	while(lastJumpedPos < n - 1) {  // loop till last jump hasn't taken us till the end
+		maxReachable = max(maxReachable, i + nums[i]);  // furthest index reachable on the next level from current level
+		if(i == lastJumpedPos) {			  // current level has been iterated & maxReachable position on next level has been finalised
+			lastJumpedPos = maxReachable;     // so just move to that maxReachable position
+			jumps++;                          // and increment the level
+	// NOTE: jump^ only gets updated after we iterate all possible jumps from previous level
+	//       This ensures jumps will only store minimum jump required to reach lastJumpedPos
+		}            
+		i++;
+	}
+	return jumps;
+}
+Time Complexity : O(N)
+Space Complexity : O(1)
+
+// FeedBack and more

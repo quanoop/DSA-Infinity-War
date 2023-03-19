@@ -1,0 +1,29 @@
+// Q:
+
+// Comments
+Think about forming numbers in the powers of 2 using their bit representation.
+The minimum power of 2 not present in the array will be the first number that could not be expressed using the given operation.
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    int minImpossibleOR(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        int i = 0;
+        while(true){
+            int n = pow(2,i);
+            i++;
+            if(!binary_search(nums.begin(), nums.end(), n)) return n;
+        }
+
+        return i;
+    }
+};
+
+// Optimised solution
+
+
+
+// FeedBack and more

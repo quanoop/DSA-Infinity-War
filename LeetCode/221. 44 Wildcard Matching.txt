@@ -1,0 +1,47 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    bool helper(string &s, string &p, int i, int j, vector<vector<int>>&dp){
+        if(i<0 and j<0) return true;
+
+        if(j<0 and i>=0) return false;
+
+        if(i<0 and j>=0){
+            for(int k = j;k>=0;k--){
+                if(p[k]!='*') return false;
+            }
+            return true;
+        }
+
+        if(dp[i][j]!=-1) return dp[i][j];
+
+        if(s[i]==p[j] || p[j]=='?'){
+            return dp[i][j] = helper(s, p, i-1, j-1, dp);
+        } else if(p[j]=='*'){
+
+            return dp[i][j] = helper(s, p, i, j-1, dp) || helper(s, p, i-1,j,dp);
+
+        } else return false;
+
+    }
+    bool isMatch(string s, string p) {
+        vector<vector<int>> dp(s.size(), vector<int>(p.size(), -1));
+        int m = s.length();
+        int n = p.length();
+
+        return helper(s, p, m-1, n-1, dp);
+    }
+};
+// Optimised solution
+
+https://leetcode.com/problems/wildcard-matching/solutions/1001130/c-clean-and-concise-bottom-up-dp-code-with-detailed-explanation-easy-to-understand/?orderBy=most_votes
+
+Visit the above link. There are also some advanced solutions to this problem. But we will tackle that later.
+
+// FeedBack and more

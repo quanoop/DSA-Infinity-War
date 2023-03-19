@@ -1,0 +1,35 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    int trailingZeroes(int n) {
+        int count2 = 0;int count5 = 0;
+        for(int i = 1;i<=n;i++){
+            int t = 2;
+            while(i%t==0){
+                count2++;
+                t=t*2;
+            }
+            t=5;
+            while(i%t==0){
+                count5++;
+                t=t*5;
+            }
+            
+        }
+
+        return min(count2, count5);
+    }
+};
+
+// Optimised solution
+
+    return n == 0 ? 0 : n / 5 + trailingZeroes(n / 5);
+
+
+// FeedBack and more

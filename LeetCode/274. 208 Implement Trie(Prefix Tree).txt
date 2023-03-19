@@ -1,0 +1,75 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Node {
+    public:
+    bool isTerminal;
+    Node *child[26];
+     Node (){
+         isTerminal = false;
+         for(int i = 0;i<26;i++){
+             child[i] = NULL;
+         }
+     }
+
+};
+class Trie {
+public:
+    vector<char> v;
+    Node* N;
+    Trie() {
+
+        N = new Node;
+        
+    }
+    
+    void insert(string word) {
+        int n = word.length();
+        Node* temp = N;
+        for(int i = 0;i<n;i++){
+            if(temp->child[word[i]-'a']==NULL){
+                temp->child[word[i]-'a'] = new Node;
+            }
+            temp = temp->child[word[i]-'a'];   
+        }
+        temp->isTerminal = true;
+    }
+    
+    bool search(string word) {
+        int n = word.length();
+        Node* temp = N;
+        for(int i = 0;i<n;i++){
+            if(temp->child[word[i]-'a']==NULL) return false;
+            temp = temp->child[word[i]-'a'];
+        }
+        return temp->isTerminal;
+
+        
+    }
+    
+    bool startsWith(string prefix) {
+        int n = prefix.length();
+        Node* temp = N;
+        for(int i = 0;i<n;i++){
+            if(temp->child[prefix[i]-'a']==NULL) return false;
+            temp = temp->child[prefix[i]-'a'];
+        }
+        return true;
+    }
+};
+
+/**
+ * Your Trie object will be instantiated and called as such:
+ * Trie* obj = new Trie();
+ * obj->insert(word);
+ * bool param_2 = obj->search(word);
+ * bool param_3 = obj->startsWith(prefix);
+ */
+
+// Optimised solution
+
+// FeedBack and more

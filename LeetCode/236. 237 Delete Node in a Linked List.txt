@@ -1,0 +1,20 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+
+class Solution {
+public:
+    void deleteNode(ListNode* node) {
+        node->val = node->next->val;
+        node->next = node->next->next;
+    }
+};
+
+// Optimised solution
+
+
+// FeedBack and more

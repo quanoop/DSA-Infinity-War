@@ -1,0 +1,29 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    bool isCircularSentence(string sentence) {
+        char l;
+        int n = sentence.length();
+        for(int i = 0; i<n;i++){
+            if(sentence[i]==' '  and l!=sentence[i+1]){
+                return false;
+            }
+            l = sentence[i];
+        }
+        if(l==sentence[0]){
+            return true;
+        }
+        
+        return false;
+    }
+};
+// Optimised solution
+
+
+// FeedBack and more

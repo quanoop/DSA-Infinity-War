@@ -1,0 +1,15 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+
+My code was a graph code. It was correct but slow somehow.
+
+
+// Optimised solution
+Leet code solution section both bfs and dfs approaches are given.
+
+// FeedBack and more

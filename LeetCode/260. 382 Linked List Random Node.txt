@@ -1,0 +1,32 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    vector<int> v;
+    Solution(ListNode* head) {
+        ListNode* temp = head;
+        while(temp){
+            v.push_back(temp->val);
+            temp = temp->next;
+        }
+    }
+    
+    int getRandom() {
+        int n = v.size();
+        int random = (rand() % n);
+        return v[random];
+        
+    }
+};
+
+// Optimised solution
+
+There is something reservoir sampling method.
+
+
+// FeedBack and more

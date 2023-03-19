@@ -1,0 +1,44 @@
+// Q:
+
+// Comments
+Manish Bhai ki hint ____ Peak pe sell kara and low pe khareed lo.
+
+// Initial Instinct
+
+// Solution Code
+
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int n = prices.size();
+        int low=0;
+        int peak=0;
+        int ans = 0;
+        if(prices.size()==1) return 0;
+        if(prices[0]<prices[1]){
+            low = 0;
+        } 
+        for(int i = 1;i<=n-1;i++){
+            if(prices[i]<prices[i-1]){
+                low = i;
+            } else if(prices[i]>prices[i-1]){
+                peak = i;
+            }
+
+            if(peak>low){
+                ans+= prices[peak] - prices[low];
+                peak = low = i;
+            }
+        }
+        if(prices[n-1]>prices[n-2]){
+            peak = n-1;
+        } 
+        if(peak>low) ans+=prices[peak]-prices[low];
+        return ans;
+    }
+};
+
+// Optimised solution
+
+
+// FeedBack and more

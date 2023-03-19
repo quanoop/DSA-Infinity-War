@@ -1,0 +1,32 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    int minimumRounds(vector<int>& tasks) {
+        unordered_map<int,int> map;
+        for(int t: tasks){
+            map[t]++;
+        }
+        int ans = 0;
+        for(auto x:map){
+            if(x.second==1)
+            return -1;
+            else{
+                if(x.second%3==0){
+                    ans+=x.second/3;
+                }
+                else ans+=x.second/3+1;
+            }
+        }
+        return ans;
+    }
+};
+
+// Optimised solution
+
+// FeedBack and more

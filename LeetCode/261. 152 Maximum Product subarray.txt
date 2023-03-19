@@ -1,0 +1,33 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    int maxProduct(vector<int>& nums) {
+        int ans = nums[0];
+        int n = nums.size();
+        int maxp , minp;
+        maxp = minp = ans;
+        for(int i = 1;i<n;i++){
+            if(nums[i]<0){
+                swap(maxp, minp);
+            }
+            maxp = max(maxp*nums[i], nums[i]);
+            minp = min(minp*nums[i], nums[i]);
+
+            ans = max(ans, maxp);
+        }
+
+        return ans;
+
+    }
+};
+
+// Optimised solution
+
+
+// FeedBack and more

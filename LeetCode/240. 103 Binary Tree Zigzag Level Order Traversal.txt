@@ -1,0 +1,61 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+        vector<vector<int>> ans;
+        if(root==NULL) return ans;
+
+        queue<TreeNode*> q;
+        q.push(root);
+        q.push(NULL);
+
+        bool flag = false;
+        vector<int> temp;
+        while(!q.empty()){
+            TreeNode* t = q.front();
+
+            q.pop();
+            if(t==NULL){
+                if(flag){
+                    reverse(temp.begin(), temp.end());
+                }
+                flag=!flag;
+                ans.push_back(temp);
+                temp.clear();
+
+                continue;
+            }
+
+            temp.push_back(t->val);
+
+            if(t->left){
+                q.push(t->left);
+            }
+
+            if(t->right){
+                q.push(t->right);
+            }
+
+            if(q.front()==NULL and q.size()>1){
+                q.push(NULL);
+            }
+
+
+
+        }
+
+        return ans;
+    }
+};
+
+// Optimised solution
+We can do this question by reversing the operations rather than reversing the vector.
+
+
+// FeedBack and more

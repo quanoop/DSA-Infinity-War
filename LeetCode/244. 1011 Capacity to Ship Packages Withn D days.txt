@@ -1,0 +1,92 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    int shipWithinDays(vector<int>& weights, int days) {
+        int d, m;
+        int s = 1, e = 1000000;
+        int n = weights.size();
+        for(int i = 0;i<n;i++){
+            if(weights[i]>s){
+                s = weights[i];
+            }
+        }
+        while(s<=e){
+            m = (s+e)/2;
+            int curr = 0;
+            d = 1;
+            for(int i = 0;i<n;i++){
+                curr+=weights[i];
+                if(curr>m){
+                    curr = weights[i];
+                    d++;
+                    if(curr>m){
+                        s=m+1;
+                        continue;
+                    }
+                }
+                if(d>days){
+                    s = m+1;
+                    continue;
+                }
+            }
+
+            if(d>days){
+                s=m+1;
+            } else {
+                e = m-1;
+            }
+        }
+
+        return s;
+
+    }
+};
+
+// Optimised solution
+
+class Solution {
+public:
+    // Check whether the packages can be shipped in less than "days" days with
+    // "c" capacity.
+    bool feasible(vector<int>& weights, int c, int days) {
+        int daysNeeded = 1, currentLoad = 0;
+        for (int weight : weights) {
+            currentLoad += weight;
+            if (currentLoad > c) {
+                daysNeeded++;
+                currentLoad = weight;
+            }
+        }
+
+        return daysNeeded <= days;
+    }
+
+    int shipWithinDays(vector<int>& weights, int days) {
+        int totalLoad = 0, maxLoad = 0;
+        for (int weight : weights) {
+            totalLoad += weight;
+            maxLoad = max(maxLoad, weight);
+        }
+
+        int l = maxLoad, r = totalLoad;
+
+        while (l < r) {
+            int mid = (l + r) / 2;
+            if (feasible(weights, mid, days)) {
+                r = mid;
+            } else {
+                l = mid + 1;
+            }
+        }
+        return l;
+    }
+};
+
+
+// FeedBack and more

@@ -1,0 +1,81 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
+        set<pair<int,int>> set; 
+        queue<pair<int,int>> q;
+        int rc = image[sr][sc];
+        q.push({sr,sc});
+        int m = image.size();
+        int n = image[0].size();
+
+        while(!q.empty()){
+            pair<int,int> p = q.front();
+            set.insert(p);
+            sr = p.first;
+            sc = p.second;
+            q.pop();
+            if(sr+1<m and image[sr+1][sc]==rc){
+                q.push({sr+1,sc});
+                image[sr+1][sc] = -1;
+            }
+            if(sr-1>=0 and image[sr-1][sc]==rc){
+                q.push({sr-1,sc});
+                image[sr-1][sc] = -1;
+            }
+            if(sc+1<n and image[sr][sc+1]==rc){
+                q.push({sr,sc+1});
+                image[sr][sc+1] = -1;
+            }
+            if(sc-1>=0 and image[sr][sc-1]==rc){
+                q.push({sr,sc-1});
+                image[sr][sc-1] = -1;
+            }
+        }
+
+        for(auto x:set){
+            image[x.first][x.second] = color;
+        }
+        return image;
+    }
+};
+
+// Optimised solution
+
+class Solution {
+public:
+    void helper(vector<vector<int>>& image, int sr, int sc, int color, int m, int n, int s){
+        if(image[sr][sc]==s and image[sr][sc]!=color){
+            image[sr][sc] = color;
+            if((sr + 1) < m){
+            helper(image, sr+1, sc, color, m,n,s);
+            }
+            if((sr - 1) >= 0 ){
+            helper(image, sr-1, sc, color, m,n,s);
+            }
+            if((sc + 1) < n){
+            helper(image, sr, sc+1, color, m,n,s);
+            }
+
+            if((sc - 1) >=0){
+            helper(image, sr, sc-1, color, m,n,s);
+            }
+        }
+
+
+
+    }
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
+        int s = image[sr][sc];
+        helper(image, sr, sc, color, image.size(), image[0].size(), s);
+        return image;
+    }
+};
+
+// FeedBack and more

@@ -1,0 +1,43 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        sort(intervals.begin(), intervals.end());
+        vector<vector<int>> ans;
+
+        ans.push_back(intervals[0]);
+
+        int n = intervals.size();
+
+        int p = 0;
+
+        for(int i = 1;i<n;i++){
+            if(ans[p][1]>=intervals[i][0]){
+                vector<int> temp = ans[p];
+                ans.pop_back();
+                temp[0] = min(temp[0], intervals[i][0]);
+                temp[1] = max(intervals[i][1], temp[1]);
+                ans.push_back(temp);
+            } else {
+                p++;
+                ans.push_back(intervals[i]);
+            }
+        }
+
+        return ans;
+
+    }
+};
+
+// Optimised solution
+
+
+// FeedBack and more
+The inbuilt sort function is good and works in most of the problems. There is not need to write the custom sorting function often.

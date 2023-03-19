@@ -1,0 +1,31 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    int helper(int n, vector<int>& dp){
+        if(n==0 || n==1) return 1;
+        if(dp[n]!=0) return dp[n];
+
+        int ans = 0;
+        for(int i =1;i<=n;i++){
+            ans+=helper(i-1,dp)*helper(n-i,dp);
+        }
+        return dp[n] = ans;
+
+    }
+    int numTrees(int n) {
+        vector<int> dp(n+1, 0);
+        return helper(n, dp);
+    }
+};
+
+// Optimised solution
+
+The similar method can be converted to a bottom up(iterative) approach. Look in the notes copy to know more about the the CATALAN numbers.
+
+// FeedBack and more

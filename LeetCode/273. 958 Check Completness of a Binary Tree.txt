@@ -1,0 +1,40 @@
+// Q:
+
+// Comments
+If we have null once then we cannot have the non null again and if it is then it is not the complete binary tree.
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    bool isCompleteTree(TreeNode* root) {
+        if (root == nullptr) {
+            return true;
+        }
+
+        bool nullNodeFound = false;
+        queue<TreeNode*> q;
+        q.push(root);
+
+        while (!q.empty()) {
+            TreeNode* node = q.front();
+            q.pop();
+
+            if (node == nullptr) {
+                nullNodeFound = true;
+            } else {
+                if (nullNodeFound) {
+                    return false;
+                }
+                q.push(node->left);
+                q.push(node->right);
+            }
+        }
+        return true;
+    }
+};
+
+// Optimised solution
+
+// FeedBack and more

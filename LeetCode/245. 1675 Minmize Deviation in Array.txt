@@ -1,0 +1,43 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    int minimumDeviation(vector<int>& nums) {
+        int mine = INT_MAX, maxe=INT_MIN;
+
+        int n = nums.size();
+        priority_queue<int> pq;
+        for(int i = 0;i<n;i++){
+            if(nums[i]%2==1){
+                nums[i]=nums[i]*2;
+            }
+            if(nums[i]>maxe){
+                maxe = nums[i];
+            }
+            if(nums[i]<mine){
+                mine = nums[i];
+            }
+            pq.push(nums[i]);
+        }
+        int ans = maxe - mine;
+        while(pq.top()%2==0){
+            int e = pq.top();
+            pq.pop();
+            ans = min(ans, e - mine);
+            mine = min(mine, e/2);
+            pq.push(e/2);
+        }
+
+        return min(ans, pq.top()-mine);
+    }
+};
+
+// Optimised solution
+
+
+// FeedBack and more

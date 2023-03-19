@@ -1,0 +1,37 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    int mostFrequentEven(vector<int>& nums) {
+        map<int, int> map;
+        int n = nums.size();
+        for(int i = 0;i<n;i++){
+            if(nums[i]%2==0){
+                map[nums[i]]++;
+            }
+        }
+        
+        if(map.size()==0){
+            return -1;
+        }
+        int max = INT_MIN;
+        int ans;
+        
+        for(auto x: map){
+            if(x.second>max){
+                max = x.second;
+                ans = x.first;
+            }
+        }
+        return ans;
+    }
+};
+
+// Optimised solution
+
+// FeedBack and more

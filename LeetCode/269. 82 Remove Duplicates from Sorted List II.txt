@@ -1,0 +1,63 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        map<int, int> m;
+        while(head){
+            m[head->val]++;
+            head=head->next;
+        }
+        
+        ListNode* ans = NULL;
+        ListNode* temp = ans;
+        for(auto p : m){
+            if(p.second==1){
+                if(ans == NULL){
+                    ans = temp = new ListNode(p.first);
+                } else {
+                    ans->next = new ListNode(p.first);
+                    ans = ans->next;
+                }
+                
+            }
+        }
+
+        return temp;
+    }
+};
+
+// Optimised solution
+
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        ListNode* sentinel = new ListNode(0, head);
+
+        ListNode* pred = sentinel;
+
+        while(head!=NULL){
+            if(head->next!=NULL and head->val == head->next->val){
+                while(head->next!=NULL and head->val == head->next->val){
+                    head=head->next;
+                }
+                pred->next = head->next;
+            } else {
+                pred=pred->next;
+            }
+
+            head=head->next;
+        }
+
+        return sentinel->next;
+    }
+};
+
+// FeedBack and more
+
+Look at the editorial section for better view of the solution and concepts.

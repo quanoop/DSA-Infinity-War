@@ -1,0 +1,30 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    int findLengthOfLCIS(vector<int>& nums) {
+        int n= nums.size();
+        if(n==1) return 1;
+        int ans=0, c;
+        for(int i = 0;i<n-1;i++){
+            int j = i;
+            c=1;
+            while(j<n-1 and nums[j]<nums[j+1]){
+                c++;
+                j++;
+            }
+            ans = max(ans, c);
+            i =j;
+        }
+        return ans;
+    }
+};
+
+// Optimised solution
+
+// FeedBack and more

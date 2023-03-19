@@ -1,0 +1,33 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    int minEatingSpeed(vector<int>& piles, int h) {
+        int s = 1, e = 1000000000, m, t;
+        int n = piles.size();
+        while(s<e){
+            m = (s+e)/2;
+            t = h;
+            for(int i=0;i<n;i++){
+                t = t - (piles[i]/m + int(piles[i]%m!=0));
+                if(t<0){
+                    s=m+1;
+                    break;
+                }
+            }
+            if(t>=0){
+                e = m;
+            }
+        }
+        return e;
+    }
+};
+// Optimised solution
+
+
+// FeedBack and more

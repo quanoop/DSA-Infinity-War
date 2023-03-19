@@ -1,0 +1,33 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& numbers, int target) {
+        int s = 0;
+        vector<int> ans;
+        int e = numbers.size()-1;
+        while(s<=e){
+            int su = numbers[s]+numbers[e];
+            if(target==su){
+                ans.push_back(s+1);
+                ans.push_back(e+1);
+                return ans;
+            } else if(su>target){
+                e--;
+            } else {
+                s++;
+            }
+        }
+        return ans;
+    }
+};
+
+// Optimised solution
+
+// FeedBack and more
+To return a vector of size two we can also return it like {s+1, e+1}. This is helpful in other data structures too like pair and all etc.

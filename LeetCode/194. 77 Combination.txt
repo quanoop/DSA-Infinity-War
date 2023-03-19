@@ -1,0 +1,34 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+
+class Solution {
+public:
+    void helper(int n, int k, vector<int> &temp, vector<vector<int>> &ans){
+        if(temp.size()==k){
+            ans.push_back(temp);
+            return;
+        }
+        if(n==0) return;
+        helper(n-1,k , temp, ans);
+        temp.push_back(n);
+        helper(n-1,k, temp, ans);
+        temp.pop_back();
+    }
+    vector<vector<int>> combine(int n, int k) {
+        vector<int> temp;
+        vector<vector<int>> ans;
+        helper(n, k , temp, ans);
+        return ans;
+    }
+};
+
+// Optimised solution
+
+// FeedBack and more
+
+In recursion if we pass vectors with reference and do the backtracking the time complexity reduces a lot. 

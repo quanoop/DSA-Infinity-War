@@ -1,0 +1,30 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    int appendCharacters(string s, string t) {
+        int n = t.size();
+        int i = 0;
+        int j = 0;
+        int m = s.size();
+        
+        while(i<n and j<m){
+            if(t[i]==s[j]){
+                i++;
+                j++;
+            }
+            else
+                j++;
+        }
+        return n - i;
+    }
+};
+
+// Optimised solution
+
+// FeedBack and more

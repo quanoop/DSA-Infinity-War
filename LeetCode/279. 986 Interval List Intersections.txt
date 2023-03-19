@@ -1,0 +1,46 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    bool intersects(vector<int> &A, vector<int> &B){
+        if(A[1] >= B[0] or B[1]>=A[0]) return true;
+        return false;
+    }
+    vector<vector<int>> intervalIntersection(vector<vector<int>>& firstList, vector<vector<int>>& secondList) {
+        vector<vector<int>> ans;
+        int m = firstList.size();
+        int n = secondList.size();
+
+        int i = 0, j = 0;
+
+        while(i<m and j<n){
+            if(intersects(firstList[i], secondList[j])){
+                vector<int> temp;
+                temp.push_back(max(firstList[i][0], secondList[j][0]));
+                temp.push_back(min(firstList[i][1], secondList[j][1]));
+                if(temp[0]<=temp[1]){
+                    ans.push_back(temp);
+                }
+                
+            } 
+            if(firstList[i][1]<secondList[j][1]){
+                i++;
+            } else {
+                j++;
+            }
+        }
+
+        return ans;
+
+
+    }
+};
+
+// Optimised solution
+
+// FeedBack and more

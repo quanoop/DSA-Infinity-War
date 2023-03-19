@@ -1,0 +1,55 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    vector<vector<string>> ans;
+    bool isPalindrome(string s){
+        string r = s;
+        reverse(s.begin(),s.end());
+        if(r == s)
+        return true;
+
+        return false;
+    }
+
+    void helper(string s, int idx, vector<string> temp){
+        if(idx == s.size() and temp.size()!=0){
+            ans.push_back(temp);
+            return;
+        }
+
+        int n = s.size();
+
+        string str = "";
+
+        for(int i = idx;i<n;i++){
+            str+=s[i];
+            if(isPalindrome(str)){
+                temp.push_back(str);
+                helper(s, i+1, temp);
+                temp.pop_back();
+            }
+        }
+
+        
+        
+
+    }
+
+    vector<vector<string>> partition(string s) {
+        vector<string> temp;
+       helper(s, 0, temp);
+       return ans;
+    }
+};
+
+// Optimised solution
+
+It has one more solution using backtracking and dp. Look at the leetcode solution section for more. Understanding its time and space complexity is also a bit tricky so spend some time in it.
+
+// FeedBack and more

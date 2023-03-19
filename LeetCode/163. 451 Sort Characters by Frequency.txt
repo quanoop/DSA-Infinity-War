@@ -1,0 +1,55 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    static bool compare(pair<char, int> A, pair<char,int> B){
+        if(A.second == B.second){
+            return A.first < B.first;
+        }
+        
+        return A.second>B.second;
+    }
+    string frequencySort(string s) {
+        map<char, int> map;
+        int n = s.size();
+        for(int i = 0;i<n;i++){
+            map[s[i]]++;
+        }
+        vector<pair<char,int>> v;
+        for(auto x:map){
+            v.push_back(x);
+        }
+        
+        sort(v.begin(), v.end(), compare);
+        string ans = "";
+        int m = v.size();
+        for(int i = 0 ;i<m;i++){
+            for(int j = 0;j<v[i].second;j++){
+                ans+=v[i].first;
+            }
+        }
+        
+        return ans;
+    }
+};
+
+// Optimised solution
+class Solution {
+public:
+    string frequencySort(string s) {
+        int counts[256] = {0};
+        for (char ch : s)
+            ++counts[ch];
+        sort(s.begin(), s.end(), [&](char a, char b) { 
+            return counts[a] > counts[b] || (counts[a] == counts[b] && a < b); 
+        });
+        return s;
+    }
+};
+
+// FeedBack and more

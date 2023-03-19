@@ -1,0 +1,59 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+
+class Solution {
+public:
+    void helper(vector<vector<int>>& matrix, int i, int j, int m, int n, vector<vector<bool>>&visited){
+
+        visited[i][j] = true;
+
+        for(int k = 0;k<n;k++){
+            if(matrix[i][k]!=0){
+                matrix[i][k] = 0;
+                visited[i][k] = true;
+            } else {
+                if(!visited[i][k])
+                helper(matrix, i, k, m, n, visited);
+            }
+        }
+
+        for(int k = 0;k<m;k++){
+            if(matrix[k][j]!=0){
+                matrix[k][j] = 0;
+                visited[k][j] = true;
+
+            } else {
+                if(!visited[k][j])
+                helper(matrix, k, j, m, n, visited);
+            }
+        }
+
+
+
+    }
+    void setZeroes(vector<vector<int>>& matrix) {
+        int m = matrix.size();
+        int n = matrix[0].size();
+
+        vector<vector<bool>> visited(m, vector<bool>(n, false));
+
+        for(int i = 0;i<m;i++){
+            for(int j = 0;j<n;j++){
+                if(matrix[i][j]==0 and !visited[i][j]){
+                    helper(matrix, i, j, m, n, visited);
+                }
+            }
+        }
+    }
+};
+
+// Optimised solution
+
+This problem can be solved in more optimised manner without using recursion. First we traverse the matrix for the 0s if a zero is present we mark a flag in the matrix itself and later convert all the row and column elements of that to be as zero. This is discussed in detail in Leetcode solution section.
+
+// FeedBack and more

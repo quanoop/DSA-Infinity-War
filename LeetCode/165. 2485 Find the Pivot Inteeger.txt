@@ -1,0 +1,31 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    int pivotInteger(int n) {
+        int s = 0, e = n, m;
+        while(s<=e){
+            m = (s+e)/2;
+            int a = m*(m+1)/2;
+            int b = n*(n+1)/2 - a + m;
+            if(a==b){
+                return m;
+            } else if(b>a){
+                s = m+1;
+            } else {
+                e = m-1;
+            }
+        }
+        return -1;
+    }
+};
+
+// Optimised solution
+
+
+// FeedBack and more

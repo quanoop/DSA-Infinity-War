@@ -1,0 +1,44 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    bool matches(unordered_map<char,int> mapa, unordered_map<char,int> mapb){
+        for(auto x: mapb){
+            if(mapa[x.first]!=mapb[x.first]) return false;
+        }
+        return true;
+    }
+    bool checkInclusion(string s1, string s2) {
+        unordered_map<char,int> mapa,mapb;
+        if(s1.length()>s2.length()) return false;
+        int n = s1.length();
+        for(int i = 0;i<n;i++){
+            mapa[s1[i]]++;
+        }
+        int m = s2.length();
+        for(int i = 0;i<n;i++){
+            mapb[s2[i]]++;
+        }
+        if(matches(mapa, mapb)) return true;
+
+
+        for(int i = n;i<m;i++){
+            mapb[s2[i]]++;
+            mapb[s2[i-n]]--;
+            if(matches(mapa, mapb)) return true;
+        }
+    
+        return false;
+    }
+};
+
+
+// Optimised solution
+Look at the solution section of the Leetcode. Many approaches are given there similar to yours.
+
+// FeedBack and more

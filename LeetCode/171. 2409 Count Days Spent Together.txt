@@ -1,0 +1,52 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    int countDaysTogether(string arriveAlice, string leaveAlice, string arriveBob, string leaveBob) {
+        int year[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        
+        for(int i = 1;i<13;i++){
+            year[i] = year[i] + year[i-1];
+        }
+        
+        int aam = stoi(arriveAlice.substr(0,2));
+        int aad = stoi(arriveAlice.substr(3,2));
+        
+        int alm = stoi(leaveAlice.substr(0,2));
+        int ald = stoi(leaveAlice.substr(3,2));
+        
+        int bam = stoi(arriveBob.substr(0,2));
+        int bad = stoi(arriveBob.substr(3,2));
+        
+        int blm = stoi(leaveBob.substr(0,2));
+        int bld = stoi(leaveBob.substr(3,2));
+        
+        int aarrive = year[aam-1] + aad;
+        cout<<aarrive<<" ";
+        
+        int barrive = year[bam-1] + bad;
+        cout<<barrive<<" ";
+        
+        int aleave = year[alm-1] + ald;
+        cout<<aleave<<" ";
+        
+        int bleave = year[blm-1] + bld;
+        cout<<bleave<<" ";
+        cout<<endl;
+        
+        int ans =  min(aleave, bleave) - max(aarrive, barrive) ;
+        if(ans<0){
+            return 0;
+        }
+        return ans+1;
+    }
+};
+
+// Optimised solution
+
+// FeedBack and more

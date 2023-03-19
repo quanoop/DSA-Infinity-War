@@ -1,0 +1,28 @@
+// Q:
+
+// Comments
+
+// Initial Instinct
+
+// Solution Code
+class Solution {
+public:
+    int commonFactors(int a, int b) {
+        int i = 2;
+        int ans = 1;
+        
+        int l = min(a,b);
+        
+        while(i<=l){
+            if(a%i==0 and b%i==0){
+                ans++;
+            }
+            i++;
+        }
+        return ans;
+    }
+};
+
+// Optimised solution
+
+// FeedBack and more
